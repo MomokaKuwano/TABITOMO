@@ -14,13 +14,14 @@
 全ての旅行者
 
 ### 主な利用シーン
+
 旅行の準備、計画、思い出の保存・シェア
 
 ## 設計書
-<...>
 
-##実装機能リストのURL
-https://docs.google.com/spreadsheets/d/1Xz39-sd1vq86uErY2c6O9X8YXrRvf3Ndm9uvFXkau58/edit?usp=sharing
+
+## 実装機能リストのURL
+- https://docs.google.com/spreadsheets/d/1Xz39-sd1vq86uErY2c6O9X8YXrRvf3Ndm9uvFXkau58/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -30,4 +31,4 @@ https://docs.google.com/spreadsheets/d/1Xz39-sd1vq86uErY2c6O9X8YXrRvf3Ndm9uvFXka
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用検討中です
