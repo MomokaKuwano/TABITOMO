@@ -14,25 +14,22 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   namespace :admin do
     get 'users/index'
     get 'users/show'
-  end
-  namespace :admin do
+
     get 'homes/top'
   end
-  namespace :public do
+  
+  scope :public do
     get 'packs/index'
     get 'packs/show'
-  end
-  namespace :public do
+
     get 'posts/new'
     get 'posts/index'
     get 'posts/show'
     get 'posts/edit'
-  end
-  namespace :public do
+ 
     get 'users/show'
     get 'users/edit'
-  end
-  namespace :public do
+
     get 'homes/top'
     get 'homes/map'
   end
