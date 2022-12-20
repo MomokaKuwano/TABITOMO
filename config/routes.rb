@@ -10,15 +10,17 @@ devise_for :users, skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+#URLは指定のパスにしたい/ファイル構成も指定のパスにしたい
   namespace :admin do
     get 'users/index'
     get 'users/show'
 
     get 'homes/top'
   end
-
-  scope :public do
+ 
+ # URLは変えたくない/ファイル構成だけ指定のパスにしたい
+  scope module: :public do
+    root to:'homes#top'
     get 'packs/index'
     get 'packs/show'
 
@@ -30,7 +32,6 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get 'users/show'
     get 'users/edit'
 
-    get 'homes/top'
     get 'homes/map'
   end
 end
