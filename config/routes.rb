@@ -17,7 +17,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     get 'homes/top'
   end
-  
+
   scope :public do
     get 'packs/index'
     get 'packs/show'
@@ -26,12 +26,11 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get 'posts/index'
     get 'posts/show'
     get 'posts/edit'
- 
+
     get 'users/show'
     get 'users/edit'
 
     get 'homes/top'
     get 'homes/map'
   end
-
 end
