@@ -34,3 +34,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get 'homes/map'
   end
 end
+
+
+
+
+
