@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>Tabitomo</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--FontAwesome導入-->
+    <script src="https://kit.fontawesome.com/eabeaac4fc.js" crossorigin="anonymous"></script>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,7 +14,63 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="container">
+        <div class="row">
+          <!--リストをサイドに固定-->
+          <div class="sidebox" data-spy="affix" data-offset-top="100">
+          <!--ロゴ-->
+            <a href="/">
+              <img src="assets/images/tabitomologo.png" width="200" height="200">
+            </a>
+            <!--ナビゲーションバー-->
+            <ul class="nav flex-column list-unstyled">
+              <li class="nav-item">
+                <%=link_to root_path, class: 'nav-link active' do %>
+                  <i class="fas fa-home"></i>
+                  Dashboard
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%=link_to root_path, class: 'nav-link active' do %>
+                  <i class="fas fa-user"></i>
+                  Mypage
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%=link_to root_path, class: 'nav-link active' do %>
+                  <i class="fas fa-suitcase-rolling"></i>
+                  Packing
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%=link_to root_path, class: 'nav-link active' do %>
+                  <i class="fas fa-plane"></i>
+                  Planning
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
   </body>
-  
+
 </html>
