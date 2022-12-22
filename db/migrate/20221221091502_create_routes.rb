@@ -4,7 +4,7 @@ class CreateRoutes < ActiveRecord::Migration[6.1]
       t.string :spot,     null: false
       t.integer :date
       t.integer :time
-      t.text :write_post, null: false
+      t.text :caption, null: false
       t.timestamps
     end
   end
