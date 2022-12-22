@@ -10,29 +10,19 @@ devise_for :users, skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
-#URLは指定のパスにしたい/ファイル構成も指定のパスにしたい
+#URLは指定のパス/ファイル構成も指定のパス
   namespace :admin do
-    get 'users/index'
-    get 'users/show'
-
-    get 'homes/top'
+    root to:'homes#top'
+    resources :users, only: [:index, :show]
   end
  
- # URLは変えたくない/ファイル構成だけ指定のパスにしたい
+ # URLは変えない/ファイル構成だけ指定のパス
   scope module: :public do
     root to:'homes#top'
-    get 'packs/index'
-    get 'packs/show'
-
-    get 'posts/new'
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-
-    get 'users/show'
-    get 'users/edit'
-
-    get 'homes/map'
+    get 'homes/map' => 'homes#map', as: 'map'
+    resources :users, only: [:show, :edit]
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :packs, only: [:index, :show]
   end
 end
 
