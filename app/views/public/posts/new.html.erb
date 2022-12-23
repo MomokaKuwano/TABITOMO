@@ -1,2 +1,58 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h3>Let’s Planning!</h3>
+    <p>Hope you have good trip</p>
+  </div>
+  <!--タイトル-->
+  <div class="row">
+    <h4>New Plan</h4>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <!--投稿フォーム-->
+      <!--＠postは親モデル、routesの子モデルをネストしてデータ保存-->
+      <%= form_with model: @post do |f| %>
+        <div class="mb-2">
+          <!--タイトル-->
+          <%= f.label :title, "Title", class: "col-form-label" %>
+          <%= f.text_field :title, class:"form-control", placeholder:"title" %>
+        </div>
+        <div class="mb-2">
+          <!--ここから子モデル定義-->
+          <%= f.fields_for :routes do |qu| %>
+            <!--場所-->
+            <%= qu.label :spot, "Spot", class: "col-form-label" %>
+            <%= qu.text_field :spot, class:"form-control", placeholder:"spot" %>
+          </div>
+          <div class="mb-2">
+            <!--日付※必須ではない-->
+            <%= qu.label :dete, "Date", class: "col-form-label" %>
+            <%= qu.date_field :date, class:"form-control" %>
+          </div>
+          <div class="mb-2">
+            <!--時間※必須ではない-->
+            <%= qu.label :time, "Time", class: "col-form-label" %>
+            <%= qu.time_field :time, class:"form-control" %>
+          </div>
+          <div class="mb-2">
+            <!--写真※必須ではない-->
+            <%= qu.label :image, "Image", class: "col-form-label" %>
+            <%= qu.file_field :image, accept: "image/*", class:"form-control" %>
+          </div>
+          <div class="mb-2">
+            <!--キャプション-->
+            <%= qu.label :caption, "Caption", class: "col-form-label" %>
+            <%= qu.text_area :caption, class:"form-control", placeholder:"caption" %>
+        </div>
+          <% end %>
+        <div class="md-3">
+          <!--追加ボタン-->
+          <%= f.submit 'Add!'%>
+        </div>
+      <% end %>
+    </div>
+  <div class="col-8">
+    
+  </div>
+</div>
+

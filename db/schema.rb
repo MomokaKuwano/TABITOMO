@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2022_12_21_093045) do
     t.string "spot", null: false
     t.integer "date"
     t.integer "time"
-    t.text "write_post", null: false
+    t.text "caption", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
