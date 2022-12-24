@@ -86,15 +86,17 @@ ActiveRecord::Schema.define(version: 2022_12_21_093045) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "routes", force: :cascade do |t|
+    t.integer "post_id", null: false
     t.string "spot", null: false
-    t.integer "date"
-    t.integer "time"
+    t.date "date"
+    t.time "time"
     t.text "caption", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
