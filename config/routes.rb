@@ -15,7 +15,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     root to:'homes#top'
     resources :users, only: [:index, :show]
   end
- 
+
  # URLは変えない/ファイル構成だけ指定のパス
   scope module: :public do
     root to:'homes#top'
