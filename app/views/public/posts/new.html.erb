@@ -15,15 +15,15 @@
     <div class="col-4">
       <!--投稿フォーム-->
       <!--＠postは親モデル、routesの子モデルをネストしてデータ保存-->
-      <%= form_with model: @post do |f| %>
+      <%= form_with model: @post, url: confirm_path do |f| %>
         <div class="mb-2">
           <!--タイトル-->
-          <%= f.label :title, "Title", class: "col-form-label" %>
-          <%= f.text_field :title, class:"form-control", placeholder:"title" %>
+          <%#= f.label :title, "Title", class: "col-form-label" %>
+          <%#= f.text_field :title, class:"form-control", placeholder:"title" %>
         </div>
         <div class="mb-2">
           <!--ここから子モデル定義-->
-          <%= f.fields_for :routes do |qu| %>
+          <%#= f.fields_for :routes do |qu| %>
             <!--場所-->
             <%= qu.label :spot, "Spot", class: "col-form-label" %>
             <%= qu.text_field :spot, class:"form-control", placeholder:"spot" %>
@@ -55,8 +55,37 @@
         </div>
       <% end %>
     </div>
-  <div class="col-8">
-    
-  </div>
+    <div class="col-8">
+      <!--投稿内容確認部分-->
+      <!--createで正規投稿-->
+      <!--タイトルフォーム-->
+      <% @posts.each do |post|%>
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <!--下書きをrouteに代入する-->
+            <% post.routes.each do |route| %>
+            <div class="col-md-4">
+              <%= image_tag route.get_image, size: "150x100" %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= route.spot %>
+                </h5>
+                <p class="card-text">
+                  <%= route.caption %>
+                </p>
+              </div>
+            </div>
+            <% end %>
+            <p class="card-text">
+              <small class="text-muted">
+                <%= post.created_at %>
+              </small>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
 </div>
 

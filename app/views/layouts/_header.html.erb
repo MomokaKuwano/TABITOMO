@@ -10,8 +10,8 @@
           </a>
           <!--ナビゲーションバー-->
           <ul class="nav flex-column list-unstyled">
-            <!--Userログイン時ここから-->
             <% if user_signed_in? %>
+              <!--Userログイン時-->
               <!--ダッシュボード-->
               <li class="nav-item">
                 <%=link_to root_path, class: 'nav-link active' do %>
@@ -47,9 +47,9 @@
                   Log out
                 <% end %>
               </li>
-                <!--ここまで-->
               <% else %>
-               <!--ダッシュボード-->
+              <!--User未ログイン時-->
+              <!--ダッシュボード-->
               <li class="nav-item">
                 <%=link_to root_path, class: 'nav-link active' do %>
                   <i class="fas fa-home"></i>

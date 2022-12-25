@@ -1,7 +1,13 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
-    routes = @post.routes.build
+    @post.routes.build
+    @posts = current_user.posts
+  end
+
+  def confirm
+    @post = Post.new(post_params)
+    @posts = current_user.posts.all
   end
 
   def create
@@ -11,7 +17,7 @@ class Public::PostsController < ApplicationController
     else
       render :new
     end
-    redirect_to post_path(@post.id)
+    redirect_to new_post_path
   end
 
   def index
@@ -23,9 +29,11 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+
   end
 
   private
+
 	def post_params
 	    params.require(:post).permit(:title,
 	    routes_attributes: [:spot, :date, :time, :image, :caption]

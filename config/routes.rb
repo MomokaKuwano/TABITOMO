@@ -22,6 +22,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get 'homes/map' => 'homes#map', as: 'map'
     resources :users, only: [:show, :edit]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    post 'posts/confirm' => 'posts#confirm', as: 'confirm'
     resources :packs, only: [:index, :show]
   end
 end
