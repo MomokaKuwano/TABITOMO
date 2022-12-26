@@ -3,11 +3,17 @@ class Public::PostsController < ApplicationController
     @post = Post.new
     @post.routes.build
     @posts = current_user.posts
+    @statuses = current_user.statuses
   end
 
-  def confirm
-    @post = Post.new(post_params)
-    @posts = current_user.posts.all
+  def status
+    @status = Status.new(status_params)
+    if @status.user_id = current_user.id
+      @status.save
+    else
+      render :new
+    end
+    redirect_to new_post_path
   end
 
   def create
@@ -29,15 +35,28 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    
 
+  end
+
+  def update
+    status = Status.find(params[:id])
+    status.user_id = current_user.id
+    status.update(status_params)
+    redirect_to new_post_path
+  end
+
+  def destroy
+    status = Status.find(params[:id])
+    status.user_id = current_user.id
+    status.destroy
+    redirect_to new_post_path
   end
 
   private
 
-	def post_params
-	    params.require(:post).permit(:title,
-	    routes_attributes: [:spot, :date, :time, :image, :caption]
-	    )
+	def status_params
+	    params.permit(:spot, :date, :time, :image, :caption)
 	end
 
 end
