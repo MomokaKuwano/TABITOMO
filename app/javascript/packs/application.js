@@ -14,6 +14,10 @@ import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 
+// import underscore
+// require gmaps/google
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+

@@ -2,6 +2,9 @@ class Status < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
+  
+  # geocoded_by :address
+  # after_validation :geocode
 
   def get_image
     unless image.attached?

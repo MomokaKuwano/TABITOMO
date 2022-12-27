@@ -14,12 +14,15 @@
   <div class="row">
     <div class="col-4">
       <!--下書きのフォーム-->
+      <div id="map" style="height: 300px;width: 300px;"></div>
       <%= form_with model: @status, url: status_path do |f| %>
         <div class="mb-2">
             <!--場所-->
             <i class="fa-solid fa-location-dot"></i>
             <%= f.label :spot, "Spot", class: "col-form-label" %>
-            <%= f.text_field :spot, class:"form-control", placeholder:"spot" %>
+            <!--address'というidの値（value）を取得-->
+            <%= f.text_field :spot, class:"form-control", placeholder:"spot", id: "address" %>
+            <button onclick="codeAddress();return false;">検索</button>
           </div>
           <div class="mb-2">
             <!--日付※必須ではない-->
@@ -52,57 +55,58 @@
     <div class="col-7">
       <!--投稿内容確認部分,createで正規投稿-->
       <!--タイトル-->
-      <%= form_with model: @posts, url: posts_path do |f| %>
+      <%= form_with model: @post, url: posts_path, local: true, multipart: true do |f| %>
         <%#= f.label :title, class: "col-form-label" %>
         <i class="fa-solid fa-bookmark"></i>
         <%= f.text_field :title, placeholder:"Plan title" %>
         <!--下書きをrouteに代入する-->
+          <%#= f.fields_for :route do |s|%>
 
-          <% @statuses.each do |status|%>
-            <p class="card-text mt-2 mb-1">
-              <%= status.date.strftime("%Y-%m-%d") %>
-            </p>
-              <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <%= image_tag status.get_image, size: "150x100" %>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-6">
-                          <h5 class="card-title">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <%= status.spot %>
-                          </h5>
+            <% @statuses.each do |status|%>
+              <p class="card-text mt-2 mb-1">
+                <%= status.date.strftime("%Y-%m-%d") %>
+              </p>
+                <div class="card mb-3" style="max-width: 540px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <%= image_tag status.get_image, size: "150x100" %>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-6">
+                            <h5 class="card-title">
+                              <i class="fa-solid fa-location-dot"></i>
+                              <%= status.spot %>
+                            </h5>
+                          </div>
+                          <div class="col-3">
+                            <p class="card-text">
+                              <small class="text-muted">
+                                <%= status.time.strftime("%H:%M") %>
+                              </small>
+                            </p>
+                          </div>
+                          <div class="col-1">
+                            <%= link_to new_post_path(id: status.id) do %>
+                              <i class="fa-solid fa-pen-to-square"></i>
+                            <% end %>
+                          </div>
+                          <div class="col-1">
+                            <%= link_to post_path(status.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                              <i class="fa-solid fa-trash"></i>
+                            <% end %>
+                          </div>
                         </div>
-                        <div class="col-3">
-                          <p class="card-text">
-                            <small class="text-muted">
-                              <%= status.time.strftime("%H:%M") %>
-                            </small>
-                          </p>
-                        </div>
-                        <div class="col-1">
-                          <%= link_to new_post_path(id: status.id) do %>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                          <% end %>
-                        </div>
-                        <div class="col-1">
-                          <%= link_to post_path(status.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                            <i class="fa-solid fa-trash"></i>
-                          <% end %>
-                        </div>
+
+                        <p class="card-text">
+                          <%= status.caption %>
+                        </p>
                       </div>
-
-                      <p class="card-text">
-                        <%= status.caption %>
-                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
         <% end %>
     </div>
 </div>

@@ -56,3 +56,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+
+# GoogleMapを簡単に作成できる
+gem "gmaps4rails"
+# 地名から緯度経度に変換できる
+gem "geocoder"
+# JSでcontrollerの変数を使えるようにする
+gem "gon"
+# GoogleMapAPIのkeyを読み込むため
+gem "dotenv-rails"
