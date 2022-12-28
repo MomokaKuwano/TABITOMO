@@ -12,9 +12,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-4">
+    <div class="col-5">
       <!--下書きのフォーム-->
-      <div id="map" style="height: 300px;width: 300px;"></div>
+      <div id="map" style="height: 300px;width: 400px;"></div>
       <%= form_with model: @status, url: status_path do |f| %>
         <div class="mb-2">
             <!--場所-->
@@ -52,7 +52,7 @@
     </div>
     <div class="col-1">
     </div>
-    <div class="col-7">
+    <div class="col-6">
       <!--投稿内容確認部分,createで正規投稿-->
       <!--タイトル-->
       <%= form_with model: @post, url: posts_path, local: true, multipart: true do |f| %>
