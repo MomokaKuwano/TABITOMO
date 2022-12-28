@@ -102,6 +102,8 @@
                 map: map, //マーカーを落とすマップを指定
                 position: results[0].geometry.location //マーカーを落とす位置を決める
             });
+            $('#latitude').val(lat);
+            $('#longitude').val(lng);
           } else {
             alert('該当する結果がありませんでした');
           }

@@ -1,29 +1,22 @@
 class Public::PostsController < ApplicationController
   def new
-    @post = Post.new
+    # 条件を指定して初めの1件を取得し1件もなければ作成
+    @post = Post.find_or_create_by(user_id: current_user.id, status: false)
     @post.routes.build
-    @posts = current_user.posts
-    @statuses = current_user.statuses
-  end
-
-  def status
-    @status = Status.new(status_params)
-    if @status.user_id = current_user.id
-      @status.save
-    else
-      render :new
-    end
-    redirect_to new_post_path
+    @route = Route.new
+    @routes = Route.where(post_id: @post.id)
   end
 
   def create
-    @post = Post.new(post_params)
-    if @post.user_id = current_user.id
-      @post.save
+    @route = Route.new(route_params)
+    if @route.save
+      redirect_to new_post_path
     else
+      @post = Post.find_or_create_by(user_id: current_user.id, status: false)
+      @post.routes.build
+      @routes = Route.where(post_id: @post.id)
       render :new
     end
-    redirect_to new_post_path
   end
 
   def index
@@ -31,32 +24,40 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-
+    @post = Post.find(params[:id])
   end
 
   def edit
-    
 
   end
 
   def update
-    status = Status.find(params[:id])
-    status.user_id = current_user.id
-    status.update(status_params)
-    redirect_to new_post_path
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to new_post_path
+    else
+      @post = Post.find_or_create_by(user_id: current_user.id, status: false)
+      @post.routes.build
+      @routes = Route.where(post_id: @post.id)
+      render :new
+    end
+
   end
 
   def destroy
-    status = Status.find(params[:id])
-    status.user_id = current_user.id
-    status.destroy
+    Route.find(params[:id]).destroy
     redirect_to new_post_path
   end
 
   private
 
-	def status_params
-	    params.permit(:spot, :date, :time, :image, :caption)
+	def route_params
+	  params.require(:route).permit(:post_id, :latitude, :longitude, :spot, :date, :time, :image, :caption)
+	end
+
+	def post_params
+	 # margeでpostの公開ステータスをtrueにする
+	  params.require(:post).permit(:title).merge(status: true)
 	end
 
 end
