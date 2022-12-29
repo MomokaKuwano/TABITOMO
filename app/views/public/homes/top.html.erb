@@ -10,8 +10,18 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
 
+     </div>
       <% @posts.each do |post| %>
-        <%= link_to post.title, post_path(post) %>
+      <div class="mr-5">
+        <div class="card bg-dark text-white">
+          <img src="https://picsum.photos/200/250" class="card-img" >
+          <div class="card-img-overlay">
+            <h5 class="card-title">
+              <%= link_to post.title, post_path(post) %>
+            </h5>
+          </div>
+        </div>
+      </div>
       <% end %>
     </div>
   </div>
