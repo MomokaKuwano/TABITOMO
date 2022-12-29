@@ -1,8 +1,51 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
-
-<% @post.routes.each do |route| %>
-  <div>
-    <%= route.spot %>
+<div class="container">
+  <div class="mt-5">
+    <h3>User</h3>
+    <p>comment</p>
   </div>
-<% end %>
+  <div class="mt-5">
+    <!--タイトル-->
+    <h4>
+      <i class="fa-solid fa-bookmark"></i>
+      <%= @post.title %>
+    </h4>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <!--Google Map API-->
+      <div id="map" style="height: 600px; width: 100%;"></div>
+  </div>
+  <div class="col-md-7">
+    <% @post.routes.each do |route| %>
+      <p class="card-text mt-2 mb-1">
+        <%= route.time.strftime("%H:%M") %>
+      </p>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <%= image_tag route.get_image, size: "150x100" %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fa-solid fa-location-dot"></i>
+                <%= route.spot %>
+              </h5>
+              </div>
+              <div class="mx-2">
+              <p class="card-text">
+                <%= route.caption %>
+              </p>
+            </div>
+          </div>
+      　</div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+</div>

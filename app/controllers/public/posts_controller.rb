@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find_or_create_by(user_id: current_user.id, status: false)
     @post.routes.build
     @route = Route.new
+    # @post.idに紐づいたrouteを全て持ってくる
     @routes = Route.where(post_id: @post.id)
   end
 
@@ -12,8 +13,10 @@ class Public::PostsController < ApplicationController
     if @route.save
       redirect_to new_post_path
     else
+      # 条件を指定して初めの1件を取得し1件もなければ作成
       @post = Post.find_or_create_by(user_id: current_user.id, status: false)
       @post.routes.build
+      # @post.idに紐づいたrouteを全て持ってくる
       @routes = Route.where(post_id: @post.id)
       render :new
     end
@@ -36,8 +39,10 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to new_post_path
     else
+      # 条件を指定して初めの1件を取得し1件もなければ作成
       @post = Post.find_or_create_by(user_id: current_user.id, status: false)
       @post.routes.build
+      # @post.idに紐づいたrouteを全て持ってくる
       @routes = Route.where(post_id: @post.id)
       render :new
     end
@@ -45,6 +50,7 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
+    # 指定したrouteの削除
     Route.find(params[:id]).destroy
     redirect_to new_post_path
   end
