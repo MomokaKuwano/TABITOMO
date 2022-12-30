@@ -37,7 +37,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(post.id)
+      redirect_to new_post_path
     else
       # 条件を指定して初めの1件を取得し1件もなければ作成
       @post = Post.find_or_create_by(user_id: current_user.id, status: false)

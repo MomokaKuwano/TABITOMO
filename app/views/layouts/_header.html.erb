@@ -60,26 +60,30 @@
               <% else %>
                 <!--User未ログイン時-->
                 <!--ダッシュボード-->
-                <li class="nav-item">
-                  <%=link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                    <i class="fas fa-home fa-fw"></i>
-                    Dashboard
-                  <% end %>
-                </li>
+                <div class="mb-2">
+                  <li class="nav-item">
+                    <%=link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fas fa-home fa-fw"></i>
+                      Dashboard
+                    <% end %>
+                  </li>
+                </div>
                 <!--ログイン-->
-                <li class="nav-item">
-                  <%=link_to new_user_session_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                    <i class="fa-solid fa-right-to-bracket fa-fw"></i>
-                    Log in
-                  <% end %>
-                </li>
+                <div class="mb-2">
+                  <li class="nav-item">
+                    <%=link_to new_user_session_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fa-solid fa-right-to-bracket fa-fw"></i>
+                      Log in
+                    <% end %>
+                  </li>
+                </div>
                 <!--新規登録-->
-                <li class="nav-item">
-                  <%=link_to new_user_registration_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                    <i class="fa-solid fa-user-plus fa-fw"></i>
-                    New account
-                  <% end %>
-                </li>
+                  <li class="nav-item">
+                    <%=link_to new_user_registration_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fa-solid fa-user-plus fa-fw"></i>
+                      Sign up
+                    <% end %>
+                  </li>
               <% end %>
             </ul>
         </div>
