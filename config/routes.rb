@@ -20,7 +20,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   scope module: :public do
     root to:'homes#top'
     get 'homes/map' => 'homes#map', as: 'map'
-    resources :users, only: [:show, :edit]
+    get 'users/show' => 'users#show', as: 'mypage'
+    resources :users, only: [:edit]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :packs, only: [:index, :show]
   end

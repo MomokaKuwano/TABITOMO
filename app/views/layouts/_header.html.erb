@@ -5,73 +5,83 @@
         <!--リストをサイドに固定-->
         <div class="sidebox" data-spy="affix" data-offset-top="100">
         <!--ロゴ-->
-          <a href="/">
-            <%= image_tag "tabitomologo.png", size: "160x160" %>
-          </a>
+          <div class="mb-4">
+            <a href="/">
+              <%= image_tag "tabitomologo.png", size: "160x160" %>
+            </a>
+          </div>
           <!--ナビゲーションバー-->
-          <ul class="nav flex-column list-unstyled">
-            <% if user_signed_in? %>
-              <!--Userログイン時-->
-              <!--ダッシュボード-->
-              <li class="nav-item">
-                <%=link_to root_path, class: 'nav-link active' do %>
-                  <i class="fas fa-home fa-fw"></i>
-                  Dashboard
-                <% end %>
-              </li>
-              <!--マイページ-->
-              <li class="nav-item">
-                <%=link_to root_path, class: 'nav-link active' do %>
-                  <i class="fas fa-user fa-fw"></i>
-                  Mypage
-                <% end %>
-              </li>
-              <!--パッキング-->
-              <li class="nav-item">
-                <%=link_to root_path, class: 'nav-link active' do %>
-                  <i class="fas fa-suitcase-rolling fa-fw"></i>
-                  Packing
-                <% end %>
-              </li>
-              <!--プランニング-->
-              <li class="nav-item">
-                <%=link_to new_post_path, class: 'nav-link active' do %>
-                  <i class="fas fa-plane fa-fw"></i>
-                  Planning
-                <% end %>
-              </li>
-              <!--ログアウト-->
-              <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete %>
-                  <i class="fa-solid fa-right-from-bracket fa-fw"></i>
-                  Log out
-                <% end %>
-              </li>
+            <ul class="nav flex-column list-unstyled">
+              <% if user_signed_in? %>
+                <!--Userログイン時-->
+                <!--ダッシュボード-->
+                <div class="mb-2">
+                  <li class="nav-item">
+                    <%=link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fas fa-home fa-fw"></i>
+                      Dashboard
+                    <% end %>
+                  </li>
+                </div>
+                <!--マイページ-->
+                <div class="mb-2">
+                  <li class="nav-item">
+                    <%=link_to mypage_path(current_user.id), class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fas fa-user fa-fw"></i>
+                      Mypage
+                    <% end %>
+                  </li>
+                </div>
+                <!--パッキング-->
+                <div class="mb-2">
+                <li class="nav-item">
+                  <%=link_to packs_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fas fa-suitcase-rolling fa-fw"></i>
+                    Packing
+                  <% end %>
+                </li>
+                </div>
+                <!--プランニング-->
+                 <div class="mb-2">
+                <li class="nav-item">
+                  <%=link_to new_post_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fas fa-plane fa-fw"></i>
+                    Planning
+                  <% end %>
+                </li>
+                </div>
+                <!--ログアウト-->
+                <li class="nav-item">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+                    Log out
+                  <% end %>
+                </li>
               <% else %>
-              <!--User未ログイン時-->
-              <!--ダッシュボード-->
-              <li class="nav-item">
-                <%=link_to root_path, class: 'nav-link active' do %>
-                  <i class="fas fa-home fa-fw"></i>
-                  Dashboard
-                <% end %>
-              </li>
-              <!--ログイン-->
-              <li class="nav-item">
-                <%=link_to root_path, class: 'nav-link active' do %>
-                  <i class="fa-solid fa-right-to-bracket fa-fw"></i>
-                  Log in
-                <% end %>
-              </li>
-              <!--新規登録-->
-              <li class="nav-item">
-                <%=link_to root_path, class: 'nav-link active' do %>
-                  <i class="fa-solid fa-user-plus fa-fw"></i>
-                  New account
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
+                <!--User未ログイン時-->
+                <!--ダッシュボード-->
+                <li class="nav-item">
+                  <%=link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fas fa-home fa-fw"></i>
+                    Dashboard
+                  <% end %>
+                </li>
+                <!--ログイン-->
+                <li class="nav-item">
+                  <%=link_to new_user_session_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fa-solid fa-right-to-bracket fa-fw"></i>
+                    Log in
+                  <% end %>
+                </li>
+                <!--新規登録-->
+                <li class="nav-item">
+                  <%=link_to new_user_registration_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fa-solid fa-user-plus fa-fw"></i>
+                    New account
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
         </div>
       </div>
     </div>
