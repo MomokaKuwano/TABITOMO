@@ -5,8 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_one_attached :profile_image
+
+  # 名前必須
+  validates :name, presence: true
+  # 一言は30文字以内
+  validates :one_word, length: { maximum: 30 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?

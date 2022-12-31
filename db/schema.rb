@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2022_12_21_093045) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -112,6 +114,9 @@ ActiveRecord::Schema.define(version: 2022_12_21_093045) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.string "country"
+    t.string "one_word"
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

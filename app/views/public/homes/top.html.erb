@@ -1,34 +1,66 @@
 <div class="container">
+
   <div class="row">
     <div class="col-md-6 mt-5">
-      <h3>Hello,
+
+      <h3>
+        Hello,
         <% if user_signed_in? %>
-        <%= @user.name %> !
+          <%= @user.name %> !
         <% else %>
-        Traveler!
+          Traveler!
         <% end %>
       </h3>
-      <p>Welcome back and explore the world</p>
+      <p>
+        Welcome back and explore the world
+      </p>
     </div>
-    <div class="col-md-6 mt-5">
+
+    <div class="col-md-5 mt-5">
       <form class="d-flex">
         <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
+  </div>
+
     <div class="row">
-      <% @posts.each do |post| %>
-        <div class="mt-3 mx-3">
-          <div class="card bg-dark text-white">
-            <img src="https://picsum.photos/200/250" class="card-img" >
-            <div class="card-img-overlay">
-              <h5 class="card-title">
-                <%= link_to post.title, post_path(post) %>
-              </h5>
+      <div class="col-9 mt-3">
+        <h4>Trip Plan</h4>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+          <% @posts.each do |post| %>
+           <div class="col">
+             <div class="mt-2">
+              <div class="card bg-dark text-white">
+                <img src="https://picsum.photos/200/250" class="card-img" >
+                <div class="card-img-overlay">
+                  <h5 class="card-title">
+                    <!--投稿タイトル-->
+                    <%= link_to post.title, post_path(post) %>
+                  </h5>
+                  <p class="card-text">
+                    <i class="fa-regular fa-comment"></i>
+                    <!--コメント数-->
+                    <%= post.comments.count %>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-3">
+      <h4 class="mt-3">
+        User
+      </h4>
+      <!--ユーザー一覧-->
+      <% @users.each do |user|%>
+        <div>
+          <%= image_tag user.get_profile_image(70,70) %>
+          <%= user.name %>
         </div>
       <% end %>
-    </div>
   </div>
+    </div>
 </div>
