@@ -49,12 +49,14 @@
         </div>
           <!--コメント-->
           <%= comment.comment %>
-        <small>
+        <small class="mx-2">
           <!--コメントした日-->
           <%= comment.created_at.strftime('%Y-%m-%d') %>
         </small>
-        <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+        <% if comment.user == current_user  %>
+          <%= link_to post_comment_path(comment.post, comment), method: :delete do %>
+          <i class="fa-solid fa-trash"></i>
+          <% end %>
         <% end %>
         <% end %>
       </div>
@@ -82,15 +84,15 @@
             <%= image_tag route.get_image, size: "150x100" %>
           </div>
           <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">
+            <div class="card-body p-0 p-2">
+              <h5 class="card-title m-0">
                 <i class="fa-solid fa-location-dot"></i>
                 <!--投稿スポット-->
                 <%= route.spot %>
               </h5>
             </div>
             <div class="mx-2">
-            <p class="card-text">
+            <p class="card-text p-2">
               <!--投稿キャプション-->
               <%= route.caption %>
             </p>
