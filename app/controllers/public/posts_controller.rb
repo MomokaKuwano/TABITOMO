@@ -28,6 +28,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -37,6 +38,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      flash[:success] = 'Post created!'
       redirect_to new_post_path
     else
       # 条件を指定して初めの1件を取得し1件もなければ作成

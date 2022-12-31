@@ -20,13 +20,14 @@
         <div class="container">
           <div class="row">
             <!--ヘッダーがサイドのため部分テンプレで定義-->
-            <div class="col-2">
+            <div class="col-md-2">
               <%= render 'layouts/header' %>
             </div>
             <!--main部分-->
-            <div class="col-10">
+            <div class="col-md-10">
               <%= yield %>
             </div>
+
           </div>
         </div>
       </main>

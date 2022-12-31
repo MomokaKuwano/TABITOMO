@@ -21,8 +21,11 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     root to:'homes#top'
     get 'homes/map' => 'homes#map', as: 'map'
     get 'users/show' => 'users#show', as: 'mypage'
-    resources :users, only: [:edit]
-    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    patch 'users/destroy' => 'users#destroy', as: 'unsubscribe'
+    resources :users, only: [:edit, :update]
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:create, :destroy]
+    end
     resources :packs, only: [:index, :show]
   end
 end
