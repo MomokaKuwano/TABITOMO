@@ -38,11 +38,20 @@
                     <!--投稿タイトル-->
                     <%= link_to post.title, post_path(post) %>
                   </h5>
-                  <p class="card-text">
-                    <i class="fa-regular fa-comment"></i>
-                    <!--コメント数-->
-                    <%= post.comments.count %>
-                  </p>
+
+                  <div class="row">
+                    <div class="col-4 mt-2 pr-0">
+                      <!--コメント数-->
+                      <i class="fa-regular fa-comment fa-lg"></i>
+                      <%= post.comments.count %>
+                    </div>
+                    <div class="col-8 mt-2 p-0">
+                      <!--お気に入り-->
+                      <i class="fa-regular fa-heart fa-lg"></i>
+                      <%= post.likes.count %>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>

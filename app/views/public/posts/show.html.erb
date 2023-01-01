@@ -34,10 +34,30 @@
       <!--Google Map API-->
       <div id="map" style="height: 500px; width: 100%;"></div>
       <div>
-        <div class="my-2">
-          <i class="fa-regular fa-comment fa-lg"></i>
-          <!--コメント数-->
-          <%= @post.comments.count %>
+        <div class="row">
+          <div class="col-2 mt-2 pr-0">
+            <i class="fa-regular fa-comment fa-lg"></i>
+            <!--コメント数-->
+            <%= @post.comments.count %>
+          </div>
+          <div class="col-3 mt-2 pl-1">
+            <!--お気に入り-->
+            <% if @post.liked_by?(current_user) %>
+              <p>
+                <%= link_to post_likes_path(@post), method: :delete do %>
+                  <i class="fa-solid fa-heart fa-lg"></i>
+                  <%= @post.likes.count %>
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to post_likes_path(@post), method: :post do %>
+                  <i class="fa-regular fa-heart fa-lg"></i>
+                  <%= @post.likes.count %>
+                <% end %>
+              </p>
+            <% end %>
+          </div>
         </div>
         <!--コメント一覧-->
         <% @post.comments.each do |comment| %>
