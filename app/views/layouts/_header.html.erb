@@ -26,7 +26,7 @@
                 <!--マイページ-->
                 <div class="mb-2">
                   <li class="nav-item">
-                    <%=link_to mypage_path(current_user.id), class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%=link_to user_path(current_user.id), class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fas fa-user fa-fw"></i>
                       Mypage
                     <% end %>

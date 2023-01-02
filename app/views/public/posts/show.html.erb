@@ -1,28 +1,28 @@
 <div class="container">
   <div class="mt-5">
     <div class="row">
-        <div class="col-1 mr-5">
-          <!--ユーザー画像-->
-          <%= image_tag @post.user.get_profile_image(100,100) %>
+      <div class="col-md-2 pr-0">
+        <!--ユーザー画像-->
+        <%= image_tag @post.user.get_profile_image(100,100), class: "rounded-circle" %>
+      </div>
+      <div class="col-md-10 px-0">
+        <h3>
+          <!--ユーザー名-->
+          <%= @post.user.name %>
+        </h3>
+        <div>
+          <!--住んでいる国-->
+          <i class="fa-solid fa-location-dot"></i>
+          <%= @post.user.country %>
         </div>
-        <div class="col-10 px-0">
-          <h3>
-            <!--ユーザー名-->
-            <%= @post.user.name %>
-          </h3>
-          <div>
-            <!--住んでいる国-->
-            <i class="fa-solid fa-location-dot"></i>
-            <%= @post.user.country %>
-          </div>
-          <div>
-            <!--ひと言-->
-            <%= @post.user.one_word %>
-          </div>
+        <div>
+          <!--ひと言-->
+          <%= @post.user.one_word %>
         </div>
       </div>
+    </div>
   </div>
-  <div class="mt-2">
+  <div class="mt-4">
     <h4>
       <!--タイトル-->
       <i class="fa-solid fa-bookmark"></i>
