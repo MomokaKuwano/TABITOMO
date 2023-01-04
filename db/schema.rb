@@ -79,11 +79,14 @@ ActiveRecord::Schema.define(version: 2022_12_21_093045) do
   end
 
   create_table "packing_lists", force: :cascade do |t|
+    t.integer "pack_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "packs", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "pack_title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

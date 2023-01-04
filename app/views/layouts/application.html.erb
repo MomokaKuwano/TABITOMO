@@ -15,25 +15,20 @@
   </head>
 
   <body>
-
-      <main>
-        <div class="container">
-          <div class="row">
-            <!--unlessで現在のページが新規登録・ログインページならサイドバー呼び出さない-->
-            <%# unless current_page?(new_user_registration_path) %>
-            <!--ヘッダーがサイドのため部分テンプレで定義-->
-            <div class="col-md-2">
-              <%= render 'layouts/header' %>
-            </div>
-             <%# end %>
-            <!--main部分-->
-            <div class="col-md-10">
-              <%= yield %>
-            </div>
-
+    <main>
+      <div class="container">
+        <div class="row">
+          <!--ヘッダーがサイドのため部分テンプレで定義-->
+          <div class="col-md-2">
+            <%= render 'layouts/header' %>
+          </div>
+          <!--main部分-->
+          <div class="col-md-10">
+            <%= yield %>
           </div>
         </div>
-      </main>
+      </div>
+    </main>
     <!--Bootstrapのscript-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -43,13 +38,13 @@
       let map; //変数の定義
       let geocoder; //変数の定義
       let pin = {lat: 35.6594666, lng: 139.7005536};
-      // console.log("こんにちは");
+
       function initMap(){ //コールバック関数
         geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
         if(document.getElementById('map')){ //'map'というidを取得できたら実行
           map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
             center: {lat: pin.lat, lng: pin.lng}, //最初に表示する場所（今回は「渋谷スクランブル交差点」が初期値）
-            zoom: 15, //拡大率（1〜21まで設定可能）
+            zoom: 13, //拡大率（1〜21まで設定可能）
           });
           marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
             position:  {lat: pin.lat, lng: pin.lng}, //マーカーを落とす位置を決める（値はDBに入っている）
@@ -58,7 +53,7 @@
         }else{ //'map'というidが無かった場合
           map = new google.maps.Map(document.getElementById('show_map'), { //'show_map'というidを取得してマップを表示
             center: {lat: pin.lat, lng: pin.lng}, //controllerで定義した変数を緯度・経度の値とする（値はDBに入っている）
-            zoom: 15, //拡大率（1〜21まで設定可能）
+            zoom: 13, //拡大率（1〜21まで設定可能）
           });
         console.log(pin.lat,pin.lng);
           marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす

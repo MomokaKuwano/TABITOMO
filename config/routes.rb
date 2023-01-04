@@ -26,7 +26,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     end
-    resources :packs, only: [:index, :show]
+    resources :packs, only: [:index, :create, :show]
+    resources :items, only: [:create, :inde]
   end
 end
 
