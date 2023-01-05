@@ -124,3 +124,31 @@
     </div>
   </div>
 </div>
+<!--GoogleMapのscript-->
+<script>
+  let map; //変数の定義
+  let geocoder; //変数の定義
+  let pin = {lat: 35.6594666, lng: 139.7005536};
+
+  function initMap(){ //コールバック関数
+    geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
+    // if(document.getElementById('map')){ //'map'というidを取得できたら実行
+      map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
+        center: {lat: pin.lat, lng: pin.lng}, //最初に表示する場所（今回は「渋谷スクランブル交差点」が初期値）
+        zoom: 10, //拡大率（1〜21まで設定可能）
+      });
+      marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
+        position:  {lat: pin.lat, lng: pin.lng}, //マーカーを落とす位置を決める（値はDBに入っている）
+        map: map //マーカーを落とすマップを指定
+      });
+      <% @post.routes.each do |route|%>
+        new google.maps.Marker({ //GoogleMapにマーカーを落とす
+        position:  {lat: <%= route.latitude %>, lng: <%= route.longitude %>}, //マーカーを落とす位置を決める（値はDBに入っている）
+        map: map //マーカーを落とすマップを指定
+      });
+      <% end %>
+    }
+
+  </script>
+  <!--callbackでinitMapの呼び出し-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_KEY"] %>&callback=initMap"></script>
