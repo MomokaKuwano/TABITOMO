@@ -22,21 +22,14 @@ class Public::PostsController < ApplicationController
     end
   end
 
-  def index
-
-  end
-
   def show
     @post = Post.find(params[:id])
+    @user = User.find(params[:id])
     @comment = Comment.new
-    # @lat = @post.spot.latitude
-    # @lng = @post.spot.longitude
-    # gon.lat = @lat
-    # gon.lng = @lng
   end
 
   def edit
-
+    @post = Post.find(params[:id])
   end
 
   def update

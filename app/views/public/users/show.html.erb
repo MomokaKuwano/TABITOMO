@@ -19,6 +19,30 @@
         <div>
           <%= @user.one_word %>
         </div>
+        <div>
+          <%# if @users.exists? %>
+          <!--  <%# @users.each do |user| %>-->
+          <!--    <table>-->
+          <!--      <thead>-->
+          <!--        <tr>-->
+          <!--          <th>name</th>-->
+          <!--          <th></th>-->
+          <!--          <th></th>-->
+          <!--        </tr>-->
+          <!--      </thead>-->
+          <!--      <tbody>-->
+          <!--        <tr>-->
+          <!--          <td><%#= user.name %></td>-->
+          <!--          <td>フォロー数: <%#= user.followings.count %></td>-->
+          <!--          <td>フォロワー数: <%#= user.followers.count %></td>-->
+          <!--        </tr>-->
+          <!--      </tbody>-->
+          <!--    </table>-->
+          <!--  <%# end %>-->
+          <!--<%# else %>-->
+          <!--  <p>ユーザーはいません</p>-->
+          <!--<%# end %>-->
+        </div>
       </div>
     </div>
   </div>
@@ -64,7 +88,7 @@
         <h4 class="mt-3">
           Schedule
         </h4>
-        
+
         <h4 class="mt-3">
           Follow
         </h4>
@@ -74,11 +98,11 @@
             <%#= user.name %>
           </div>
         <%# end %>
-        
+
         <h4 class="mt-3">
           Favorite Plan
         </h4>
-        
+
 
       </div>
     </div>

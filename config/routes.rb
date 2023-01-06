@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   # 顧客用
 # URL /customers/sign_in ...
 devise_for :users, skip: [:passwords], controllers: {
@@ -22,12 +26,18 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get 'homes/map' => 'homes#map', as: 'map'
     patch 'users/destroy' => 'users#destroy', as: 'unsubscribe'
     resources :users, only: [:show, :edit, :update]
+    resources :users do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-    resource :likes, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
     resources :packs, only: [:index, :create, :show]
     resources :items, only: [:create, :inde]
+    
   end
 end
 
