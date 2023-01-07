@@ -14,3 +14,15 @@
  *= require_self
  */
 
+.bg-1{
+    background-color: #DFF5FF;
+    border-radius: 10px;
+    border: solid;
+    border: 1px solid;
+    border-color: #DAA520;
+}
+
+.bg-2{
+    background-color: white;
+    border-radius: 10px;
+}
