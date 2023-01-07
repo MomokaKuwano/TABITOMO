@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @posts = @user.posts.published
   end
 
@@ -15,15 +15,6 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       render :show
-    end
-  end
-
-  # 検索機能
-  def search
-    if params[:name].present?
-      @users = User.where('name LIKE ?', "%#{params[:name]}%")
-    else
-      @users = User.none
     end
   end
 

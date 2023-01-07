@@ -66,7 +66,7 @@
           User
         </h4>
         <!--ユーザー検索-->
-          <%= form_with url: search_users_path, method: :get, local: true do |f| %>
+          <%= form_with url: root_path, method: :get, local: true do |f| %>
           <%= f.text_field :name, class: "form-control", type: "search", placeholder: "User Name" %>
           <%= f.submit :search, class: "btn btn-outline-info" %>
         <% end %>

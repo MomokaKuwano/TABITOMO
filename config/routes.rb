@@ -30,7 +30,6 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
-      get :search, on: :collection
     end
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :likes, only: [:create, :destroy]
