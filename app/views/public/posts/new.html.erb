@@ -23,7 +23,7 @@
             <i class="fa-solid fa-location-dot"></i>
             <%= f.label :spot, "Spot", class: "col-form-label" %>
             <div class="input-group mb-3">
-              <%= f.text_field :spot, class:"form-control", placeholder:"spot", id: "address" %>
+              <%= f.text_field :spot, class: "form-control", placeholder: "spot", id: "address" %>
               <div class="input-group-append">
                 <!--名前で場所の検索／緯度・経度取得 -->
                 <button class="btn btn-outline-secondary" onclick="codeAddress();return false;">検索</button>
@@ -33,12 +33,12 @@
           <div class="mb-2">
             <!--日付※必須ではない-->
             <%= f.label :dete, "Date", class: "col-form-label" %>
-            <%= f.date_field :date, class:"form-control" %>
+            <%= f.date_field :date, class: "form-control" %>
           </div>
           <div class="mb-2">
             <!--時間※必須ではない-->
             <%= f.label :time, "Time", class: "col-form-label" %>
-            <%= f.time_field :time, class:"form-control" %>
+            <%= f.time_field :time, class: "form-control" %>
           </div>
           <div class="mb-2">
             <!--写真※必須ではない-->
@@ -48,7 +48,7 @@
           <div class="mb-2">
             <!--キャプション-->
             <%= f.label :caption, "Caption", class: "col-form-label" %>
-            <%= f.text_area :caption, class:"form-control", placeholder:"caption" %>
+            <%= f.text_area :caption, class: "form-control", placeholder: "caption" %>
           </div>
         <div class="mb-5">
           <!--追加ボタン-->

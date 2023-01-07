@@ -18,6 +18,15 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  # 検索機能
+  def search
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @users = User.none
+    end
+  end
+
   private
 
   def user_params

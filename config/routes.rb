@@ -30,6 +30,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+      get :search, on: :collection
     end
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :likes, only: [:create, :destroy]
@@ -37,7 +38,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     end
     resources :packs, only: [:index, :create, :show]
     resources :items, only: [:create, :inde]
-    
+
   end
 end
 
