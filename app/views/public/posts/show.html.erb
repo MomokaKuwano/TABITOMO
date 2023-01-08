@@ -1,133 +1,151 @@
 <div class="container">
-  <div class="mt-5">
-    <div class="row">
-      <div class="col-md-2 pr-0">
-        <!--ユーザー画像-->
-        <%= image_tag @post.user.get_profile_image(100,100), class: "rounded-circle" %>
-      </div>
-      <div class="col-md-10 px-0">
-        <h3>
-          <!--ユーザー名-->
-          <%= @post.user.name %>
-        </h3>
-        <div>
-          <!--住んでいる国-->
-          <i class="fa-solid fa-location-dot"></i>
-          <%= @post.user.country %>
-        </div>
-        <div>
-          <!--ひと言-->
-          <%= @post.user.one_word %>
-        </div>
-        <div>
-          <% if current_user.following?(@post.user) %>
-            <%= link_to "フォロー外す", user_relationships_path(@post.user.id), method: :delete %>
-          <% else %>
-            <%= link_to "フォローする", user_relationships_path(@post.user.id), method: :post %>
+  <div class="bg-1 mt-5 p-4">
+    <div class="mt-2 ml-2">
+      <div class="row">
+        <div class="col-md-2 pr-0">
+          <!--ユーザー画像-->
+          <%= link_to user_path(@post.user) do %>
+          <%= image_tag @post.user.get_profile_image(100,100), class: "rounded-circle" %>
           <% end %>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="mt-4">
-    <h4>
-      <!--タイトル-->
-      <i class="fa-solid fa-bookmark"></i>
-      <%= @post.title %>
-    </h4>
-  </div>
-  <div class="row">
-    <div class="col-md-5">
-      <!--Google Map API-->
-      <div id="map" style="height: 500px; width: 100%;"></div>
-      <div>
-        <div class="row">
-          <div class="col-2 mt-2 pr-0">
-            <i class="fa-regular fa-comment fa-lg"></i>
-            <!--コメント数-->
-            <%= @post.comments.count %>
-          </div>
-          <div class="col-3 mt-2 pl-1">
-            <!--お気に入り-->
-            <% if @post.liked_by?(current_user) %>
-              <p>
-                <%= link_to post_likes_path(@post), method: :delete do %>
-                  <i class="fa-solid fa-heart fa-lg"></i>
-                  <%= @post.likes.count %>
-                <% end %>
-              </p>
-              <% else %>
-              <p>
-                <%= link_to post_likes_path(@post), method: :post do %>
-                  <i class="fa-regular fa-heart fa-lg"></i>
-                  <%= @post.likes.count %>
-                <% end %>
-              </p>
+        <div class="col-md-10 px-0">
+          <h3 class="d-flex align-items-center">
+            <!--ユーザー名-->
+            <%= link_to user_path(@post.user) do %>
+            <%= @post.user.name %>
             <% end %>
+            <!--フォロー機能-->
+            <span class="small ml-2 text-info">
+              <% if current_user.following?(@post.user) %>
+                <%= link_to "unfollow", user_relationships_path(@post.user.id), method: :delete, class: 'btn btn-outline-info rounded-pill btn-sm' %>
+              <% else %>
+                <%= link_to "follow", user_relationships_path(@post.user.id), method: :post, class: 'btn btn-outline-info rounded-pill btn-sm' %>
+              <% end %>
+            </span>
+          </h3>
+          <div>
+            <!--住んでいる国-->
+            <i class="fa-solid fa-location-dot"></i>
+            <%= @post.user.country %>
+          </div>
+          <div>
+            <!--ひと言-->
+            <%= @post.user.one_word %>
           </div>
         </div>
-        <!--コメント一覧-->
-        <% @post.comments.each do |comment| %>
-        <div>
-          <!--コメントしたユーザーの画像-->
-          <%= image_tag @post.user.get_profile_image(40,40) %>
-          <!--コメントしたユーザー名-->
-          <%= comment.user.name %>
-        </div>
-          <!--コメント-->
-          <%= comment.comment %>
-        <small class="mx-2">
-          <!--コメントした日-->
-          <%= comment.created_at.strftime('%Y-%m-%d') %>
-        </small>
-        <% if comment.user == current_user  %>
-          <%= link_to post_comment_path(comment.post, comment), method: :delete do %>
-          <i class="fa-solid fa-trash"></i>
-          <% end %>
-        <% end %>
-        <% end %>
-      </div>
-      <div class="mb-5">
-        <%= form_with model: [@post, @comment] do |f| %>
-        　<!--コメント欄-->
-          <%= f.text_area :comment, class:"form-control", placeholder: "comment..." %>
-          <div class="mt-2 mb-5">
-          <%= f.submit "Comment" %>
-          </div>
-        <% end %>
       </div>
     </div>
-    <div class="col-md-7">
-    <!--投稿内容-->
-    <% @post.routes.each do |route| %>
-      <p class="card-text mt-2 mb-1">
-      <!--時間-->
-      <%= route.time.strftime("%H:%M") %>
-      </p>
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <!--投稿画像-->
-            <%= image_tag route.get_image, size: "150x100" %>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body p-0 p-2">
-              <h5 class="card-title m-0">
-                <i class="fa-solid fa-location-dot"></i>
-                <!--投稿スポット-->
-                <%= route.spot %>
-              </h5>
+    <div class="mt-4">
+      <div class="bg-2 p-4">
+        <!--タイトル-->
+      <h4 class="d-flex align-items-center">
+        <div class="mr-3">
+          <i class="fa-solid fa-bookmark"></i>
+          <%= @post.title %>
+        </div>
+        <% if @post.user == current_user %>
+          <%= link_to edit_post_path(@post) do %>
+          <i class="fa-solid fa-pen-to-square fa-sm"></i>
+          <% end %>
+        <% end %>
+      </h4>
+
+    <div class="row">
+      <div class="col-md-5">
+        <!--Google Map API-->
+        <div id="map" style="height: 500px; width: 100%;"></div>
+      <div>
+          <div class="d-flex text-align-center">
+            <div class="mt-2 mr-3">
+              <i class="fa-regular fa-comment fa-lg"></i>
+              <!--コメント数-->
+              <%= @post.comments.count %>
             </div>
-            <div class="mx-2">
-            <p class="card-text p-2">
-              <!--投稿キャプション-->
-              <%= route.caption %>
-            </p>
+            <div class="mt-2">
+              <!--お気に入り-->
+              <% if @post.liked_by?(current_user) %>
+                <p>
+                  <%= link_to post_likes_path(@post), method: :delete do %>
+                    <i class="fa-solid fa-heart fa-lg"></i>
+                    <%= @post.likes.count %>
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to post_likes_path(@post), method: :post do %>
+                    <i class="fa-regular fa-heart fa-lg"></i>
+                    <%= @post.likes.count %>
+                  <% end %>
+                </p>
+              <% end %>
+            </div>
           </div>
+
+          <div class="mb-2">
+          <%= form_with model: [@post, @comment], class: "d-flex" do |f| %>
+          　<!--コメント欄-->
+            <%= f.text_area :comment, class: "form-control", placeholder: "comment..." %>
+            <span class="btn-sm">
+            <%= f.submit "Comment", class: 'btn btn-info rounded-pill' %>
+            </span>
+          <% end %>
           </div>
+          <!--コメント一覧-->
+          <% @post.comments.each do |comment| %>
+            <div>
+              <!--コメントしたユーザーの画像-->
+              <%= image_tag comment.user.get_profile_image(40,40), class: "col-md-2 rounded-circle p-2" %>
+              <!--コメントしたユーザー名-->
+              <%= comment.user.name %>
+            </div>
+              <!--コメント-->
+              <%= comment.comment %>
+              <small class="mx-2 text-secondary">
+                <!--コメントした日-->
+                <%= comment.created_at.strftime('%Y-%m-%d') %>
+              </small>
+              <!--current_userのみコメント削除可能-->
+              <% if comment.user == current_user %>
+                <%= link_to post_comment_path(comment.post, comment), method: :delete do %>
+                <i class="fa-solid fa-trash"></i>
+                <% end %>
+              <% end %>
+            <% end %>
         </div>
       </div>
-    <% end %>
+      <div class="col-md-7">
+      <!--投稿内容-->
+      <% @post.routes.each do |route| %>
+        <p class="card-text mt-2 mb-1">
+        <!--時間-->
+        <%= route.time.strftime("%H:%M") %>
+        </p>
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <!--投稿画像-->
+              <%= image_tag route.get_image, size: "150x100" %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-0 p-2">
+                <h5 class="card-title m-0">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <!--投稿スポット-->
+                  <%= route.spot %>
+                </h5>
+              </div>
+              <div class="mx-2">
+              <p class="card-text p-2">
+                <!--投稿キャプション-->
+                <%= route.caption %>
+              </p>
+            </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
     </div>
   </div>
 </div>

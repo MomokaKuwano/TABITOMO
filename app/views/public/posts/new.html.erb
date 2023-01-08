@@ -1,12 +1,9 @@
 <div class="container">
-  <div class="bg-1 mt-5 px-4 py-4">
+  <!--background調整-->
+  <div class="bg-1 mt-5 p-4">
     <div class="mt-2 ml-2">
-      <h3>
-        Let’s Planning!
-      </h3>
-      <p>
-        Hope you have good trip
-      </p>
+      <h3>Let’s Planning!</h3>
+      <p>Hope you have good trip</p>
     </div>
     <div class="bg-2 p-4">
       <!--タイトル-->
@@ -30,7 +27,7 @@
                   <%= f.text_field :spot, class: "form-control", placeholder: "spot", id: "address" %>
                   <div class="input-group-append">
                     <!--名前で場所の検索／緯度・経度取得 -->
-                    <button class="btn btn-outline-secondary" onclick="codeAddress();return false;">検索</button>
+                    <button class="btn btn-outline-info" onclick="codeAddress();return false;">検索</button>
                   </div>
                 </div>
               </div>
@@ -54,9 +51,10 @@
                 <%= f.label :caption, "Caption", class: "col-form-label" %>
                 <%= f.text_area :caption, class: "form-control", placeholder: "caption" %>
               </div>
-            <div class="mb-5">
-              <!--追加ボタン-->
-              <%= f.submit 'Add!'%>
+              <div class="text-right">
+                <!--追加ボタン-->
+                <%= f.submit 'Add!', class: 'btn btn-info rounded-pill' %>
+              </div>
             </div>
           <% end %>
         </div>
@@ -66,8 +64,10 @@
         <% if @post.routes.count > 0 %>
         <!--タイトルフォーム-->
         <%= form_with model: @post, url: post_path(@post), local: true, multipart: true do |f| %>
-          <i class="fa-solid fa-bookmark"></i>
-          <%= f.text_field :title, placeholder:"Plan title" %>
+          <div class="d-inline-flex">
+            <i class="fa-solid fa-bookmark fa-lg mt-2 mr-2"></i>
+            <%= f.text_field :title, class: "form-control", placeholder: "Plan title" %>
+          </div>
               <!--routeの投稿内容（下書き）をeachで表示-->
               <% @routes.each do |route|%>
                 <p class="card-text mt-2 mb-1">
@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-1">
                               <!--下書き編集-->
-                              <%= link_to new_post_path(id: route.id) do %>
+                              <%= link_to edit_post_path(@post) do %>
                                 <i class="fa-solid fa-pen-to-square"></i>
                               <% end %>
                             </div>
@@ -120,7 +120,9 @@
                     </div>
                   </div>
                 <% end %>
-              <%= f.submit 'Create!' %>
+                <div class="text-right">
+                  <%= f.submit 'Create!', class: 'btn btn-info rounded-pill btn-lg' %>
+                </div>
             <% end %>
           <% end %>
       </div>

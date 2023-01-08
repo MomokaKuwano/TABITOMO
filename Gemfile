@@ -66,3 +66,5 @@ gem "geocoder"
 gem "gon"
 # GoogleMapAPIのkeyを読み込むため
 gem "dotenv-rails"
+# ページネーション
+gem 'kaminari','~> 1.2.1'

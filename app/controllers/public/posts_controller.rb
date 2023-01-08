@@ -22,20 +22,11 @@ class Public::PostsController < ApplicationController
     end
   end
 
-  def show
-    @post = Post.find(params[:id])
-    @comment = Comment.new
-  end
-
-  def edit
-    @post = Post.find(params[:id])
-  end
-
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:success] = 'Post created!'
-      redirect_to new_post_path
+      redirect_to post_path(@post)
     else
       # 条件を指定して初めの1件を取得し1件もなければ作成
       @post = Post.find_or_create_by(user_id: current_user.id, status: false)
@@ -44,7 +35,20 @@ class Public::PostsController < ApplicationController
       @routes = Route.where(post_id: @post.id)
       render :new
     end
+  end
 
+  def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    @routes = Route.where(post_id: @post.id)
+  end
+
+  def edit_detail
+    @routes = Route.where(@post)
   end
 
   def destroy

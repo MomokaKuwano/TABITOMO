@@ -1,7 +1,8 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.published
+    @post = Post.find(params[:id])
+    @posts = @user.posts.published.page(params[:page])
   end
 
   def edit

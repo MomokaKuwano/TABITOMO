@@ -16,13 +16,13 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 }
 #URLは指定のパス/ファイル構成も指定のパス
   namespace :admin do
-    root to:'homes#top'
+    root to: 'homes#top'
     resources :users, only: [:index, :show]
   end
 
  # URLは変えない/ファイル構成だけ指定のパス
   scope module: :public do
-    root to:'homes#top'
+    root to: 'homes#top'
     get 'homes/map' => 'homes#map', as: 'map'
     patch 'users/destroy' => 'users#destroy', as: 'unsubscribe'
     resources :users, only: [:show, :edit, :update]
@@ -32,6 +32,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      get 'edit_detail' => 'posts#edit_detail', as: 'edit_detail'
       resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
