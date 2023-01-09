@@ -32,7 +32,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-      get 'edit_detail' => 'posts#edit_detail', as: 'edit_detail'
+      get 'edit_detail/:route_id' => 'posts#edit_detail', as: 'edit_detail'
       resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end

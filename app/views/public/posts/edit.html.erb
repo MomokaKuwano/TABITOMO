@@ -54,7 +54,7 @@
             <div class="mb-5">
               <!--追加ボタン-->
               <div class="text-right">
-                <%= f.submit 'Add!', class: 'btn btn-info rounded-pill' %>
+                <%= f.submit 'Add!', name: 'update_add', class: 'btn btn-info rounded-pill' %>
               </div>
             </div>
           <% end %>
@@ -101,13 +101,13 @@
                             </div>
                             <div class="col-1">
                               <!--下書き編集-->
-                              <%= link_to post_edit_detail_path(route) do %>
+                              <%= link_to post_edit_detail_path(@post, route) do %>
                                 <i class="fa-solid fa-pen-to-square"></i>
                               <% end %>
                             </div>
                             <div class="col-1">
                               <!--下書き削除-->
-                              <%= link_to post_path(route.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                              <%= link_to post_path(@post, route_id: route.id, edit: true), method: :delete, data: { confirm: 'Are you sure?' } do %>
                                 <i class="fa-solid fa-trash"></i>
                               <% end %>
                             </div>
@@ -122,7 +122,7 @@
                   </div>
                 <% end %>
                 <div class="text-right">
-                  <%= f.submit 'Create!', class: 'btn btn-info rounded-pill btn-lg' %>
+                  <%= f.submit 'Update!', class: 'btn btn-info rounded-pill btn-lg' %>
                 </div>
             <% end %>
           <% end %>
@@ -150,6 +150,7 @@
   }
   // 検索ボタン
   function codeAddress(){ //コールバック関数
+    marker.setMap(null); // マーカーを全削除する
     let inputAddress = document.getElementById('address').value; //'address'というidの値（value）を取得
 
     geocoder.geocode( { 'address': inputAddress}, function(results, status) { //ジオコードしたい住所を引数として渡す

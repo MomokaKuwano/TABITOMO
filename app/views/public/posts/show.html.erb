@@ -160,7 +160,7 @@
     geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
       map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
         center: {lat: pin.lat, lng: pin.lng}, //最初に表示する場所
-        zoom: 8, //拡大率（1〜21まで設定可能）
+        zoom: 4, //拡大率（1〜21まで設定可能）
       });
       marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
         position:  {lat: pin.lat, lng: pin.lng}, //マーカーを落とす位置を決める（値はDBに入っている）
