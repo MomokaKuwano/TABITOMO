@@ -28,35 +28,15 @@
                 </div>
               </h3>
               <div>
+                following <%= @post.user.followings.count %> |
+                followers <%= @post.user.followers.count %>
+              </div>
+              <div>
                 <i class="fa-solid fa-location-dot"></i>
                 <%= @user.country %>
               </div>
               <div>
                 <%= @user.one_word %>
-              </div>
-              <div>
-              <%# if @users.exists? %>
-              <!--  <%# @users.each do |user| %>-->
-              <!--    <table>-->
-              <!--      <thead>-->
-              <!--        <tr>-->
-              <!--          <th>name</th>-->
-              <!--          <th></th>-->
-              <!--          <th></th>-->
-              <!--        </tr>-->
-              <!--      </thead>-->
-              <!--      <tbody>-->
-              <!--        <tr>-->
-              <!--          <td><%#= user.name %></td>-->
-              <!--          <td>フォロー数: <%#= user.followings.count %></td>-->
-              <!--          <td>フォロワー数: <%#= user.followers.count %></td>-->
-              <!--        </tr>-->
-              <!--      </tbody>-->
-              <!--    </table>-->
-              <!--  <%# end %>-->
-              <!--<%# else %>-->
-              <!--  <p>ユーザーはいません</p>-->
-              <!--<%# end %>-->
               </div>
             </div>
           </div>
@@ -106,8 +86,17 @@
       </h4>
       <% end %>
       <h4 class="mt-5">
-        Follow
+        Following
       </h4>
+      <div>
+        <% @users.each do |user| %>
+          <div class="mb-3 pr-0">
+          <%= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>
+          <%= user.name %>
+          </div>
+        <% end %>
+      </div>
+
       <%# @users.each do |user|%>
         <div class="mb-3">
           <%#= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>

@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.find(params[:id])
     @posts = @user.posts.published.page(params[:page])
+    @users = @user.followers
   end
 
   def edit

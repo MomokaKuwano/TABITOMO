@@ -14,8 +14,8 @@
             <%= link_to user_path(@post.user) do %>
             <%= @post.user.name %>
             <% end %>
-            <!--フォロー機能-->
-            <span class="small ml-2 text-info">
+            <span class="small text-info ml-4">
+              <!--フォロー機能-->
               <% if current_user.following?(@post.user) %>
                 <%= link_to "unfollow", user_relationships_path(@post.user.id), method: :delete, class: 'btn btn-outline-info rounded-pill btn-sm' %>
               <% else %>
@@ -24,7 +24,11 @@
             </span>
           </h3>
           <div>
-            <!--住んでいる国-->
+            following <%= @post.user.followings.count %> |
+            followers <%= @post.user.followers.count %>
+          </div>
+          <div>
+          <!--住んでいる国-->
             <i class="fa-solid fa-location-dot"></i>
             <%= @post.user.country %>
           </div>

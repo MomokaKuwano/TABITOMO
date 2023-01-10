@@ -30,3 +30,7 @@ a,a:hover,a:visited{
     background-color: white;
     border-radius: 10px;
 }
+
+.img1{
+    background-size: cover;
+}
