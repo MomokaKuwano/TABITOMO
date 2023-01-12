@@ -5,10 +5,15 @@ class Public::HomesController < ApplicationController
     # ユーザー検索
     if params[:name].present?
        @users = User.where('name LIKE ?', "%#{params[:name]}%").page(params[:user_page]).per(5)
-    # elsif
-      # ルートの検索の場合のif文
     else
       @users = User.page(params[:user_page]).per(5)
+    end
+    # スポット検索
+    if params[:keyword].present?
+      @route = Route.where('spot LIKE ?', "%#{params[:keyword]}%").page(params[:post_page])
+      @keyword = params[:keyword]
+    else
+      @posts = Post.published.page(params[:post_page])
     end
   end
 

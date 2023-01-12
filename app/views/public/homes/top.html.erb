@@ -15,10 +15,13 @@
         </div>
         <div class="bg-2 p-3">
           <h4>Trip Plan</h4>
-          <form class="d-flex">
-            <input class="form-control mr-2" type="search" placeholder="Spot" aria-label="Search">
-            <button class="btn btn-info rounded-pill" type="submit">Search</button>
-          </form>
+
+          <!--ユーザー検索-->
+          <%= form_with url: root_path, method: :get, local: true, class: "d-inline-flex" do |f| %>
+            <%= f.text_field :keyword, class: "form-control mr-2", type: "search", placeholder: "Spot" %>
+            <%= f.submit :search, class: "btn btn-info rounded-pill btn-sm" %>
+          <% end %>
+
           <div class="row row-cols-md-3 mt-2">
             <% @posts.each do |post| %>
               <div class="col">
