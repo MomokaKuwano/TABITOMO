@@ -15,20 +15,24 @@
             <%= @post.user.name %>
             <% end %>
             <span class="small text-info ml-4">
+              <% if @post.user == current_user %>
+              <% else%>
               <!--フォロー機能-->
-              <% if current_user.following?(@post.user) %>
-                <%= link_to "unfollow", user_relationships_path(@post.user.id), method: :delete, class: 'btn btn-outline-info rounded-pill btn-sm' %>
-              <% else %>
-                <%= link_to "follow", user_relationships_path(@post.user.id), method: :post, class: 'btn btn-outline-info rounded-pill btn-sm' %>
+                <% if current_user.following?(@post.user) %>
+                  <%= link_to "unfollow", user_relationships_path(@post.user.id), method: :delete, class: 'btn btn-outline-info rounded-pill btn-sm' %>
+                <% else %>
+                  <%= link_to "follow", user_relationships_path(@post.user.id), method: :post, class: 'btn btn-outline-info rounded-pill btn-sm' %>
+                <% end %>
               <% end %>
             </span>
           </h3>
           <div>
+            <!--フォロー・フォロワーの数-->
             following <%= @post.user.followings.count %> |
             followers <%= @post.user.followers.count %>
           </div>
           <div>
-          <!--住んでいる国-->
+            <!--住んでいる国-->
             <i class="fa-solid fa-location-dot"></i>
             <%= @post.user.country %>
           </div>

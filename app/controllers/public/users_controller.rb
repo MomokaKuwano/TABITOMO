@@ -1,8 +1,11 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    # @userで絞ったユーザーの投稿一覧
     @posts = @user.posts.published.page(params[:page])
-    @users = @user.followings
+    @users = @user.followings.page(params[:user_page]).per(5)
+    likes = Like.where(user_id: @user.id).pluck(:post_id)
+    @like_posts = Post.find(likes)
   end
 
   def edit

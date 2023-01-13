@@ -79,7 +79,6 @@ class Public::PostsController < ApplicationController
   end
 
   private
-
 	def route_params
 	  params.require(:route).permit(:post_id, :latitude, :longitude, :spot, :date, :time, :image, :caption)
 	end

@@ -10,8 +10,8 @@ class Public::HomesController < ApplicationController
     end
     # スポット検索
     if params[:keyword].present?
-      @route = Route.where('spot LIKE ?', "%#{params[:keyword]}%").page(params[:post_page])
-      @keyword = params[:keyword]
+      @posts = Post.published.where('title LIKE ?', "%#{params[:keyword]}%").page(params[:post_page])
+      # @keyword = params[:keyword]
     else
       @posts = Post.published.page(params[:post_page])
     end
