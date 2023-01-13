@@ -58,7 +58,7 @@
           </ul>
 
           <div class="row row-cols-1 row-cols-md-3 g-4">
-            <% @posts.each do |post| %>
+            <% @like_posts.each do |post|%>
               <div class="col">
                <div class="my-2 mt-3">
                 <div class="card bg-dark text-white">
@@ -67,7 +67,7 @@
                   <div class="card-img-overlay">
                     <h5 class="card-title">
                       <!--投稿タイトル-->
-                      <%= link_to post.title, post_path(post) %>
+                      <%= link_to post.title, post_path(post.id) %>
                     </h5>
                     <div class="row">
                       <div class="col-4 mt-2 pr-0">
@@ -100,8 +100,6 @@
         Schedule
       </h4>
 
-
-
       <% end %>
       <h4 class="mt-5">
         Following
@@ -119,32 +117,32 @@
       </div>
       <%= paginate @users, :param_name => 'user_page'%>
       <!--お気に入りプラン一覧-->
-      <h4 class="mt-5">
-        Favorite Plan
-      </h4>
+      <!--<h4 class="mt-5">-->
+      <!--  Favorite Plan-->
+      <!--</h4>-->
 
-      <% @like_posts.each do |post|%>
-      <div class="card mb-2" style="width: auto;">
-        <div class="row g-0">
-          <div class="col-md-3">
-            <img src="https://picsum.photos/70/100">
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
+      <!--<%# @like_posts.each do |post|%>-->
+      <!--<div class="card mb-2" style="width: auto;">-->
+      <!--  <div class="row g-0">-->
+      <!--    <div class="col-md-3">-->
+      <!--      <img src="https://picsum.photos/70/100">-->
+      <!--    </div>-->
+      <!--    <div class="col-md-9">-->
+      <!--      <div class="card-body">-->
               <%#= link_to image_tag( post.image.variant(resize: '100x100') ), post_path(post.id) %>
-              <h6 class="card-title">
-                <%= link_to post.title, post_path(post.id) %>
-              </h6>
-              <p class="card-text">
-                <small class="text-muted">
-                  <%= link_to post.user.name, user_path(post.user.id) %>
-                </small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
+      <!--        <h6 class="card-title">-->
+
+      <!--        </h6>-->
+      <!--        <p class="card-text">-->
+      <!--          <small class="text-muted">-->
+      <!--            <%#= link_to post.user.name, user_path(post.user.id) %>-->
+      <!--          </small>-->
+      <!--        </p>-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</div>-->
+      <!--<%# end %>-->
 
     </div>
   </div>
