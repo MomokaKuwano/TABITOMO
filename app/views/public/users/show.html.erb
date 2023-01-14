@@ -43,21 +43,48 @@
         </div>
         <div class="bg-2 p-3">
 
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="home-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#home"
+                type="button"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+              >
               <% if @user == current_user %>
-                <%= link_to 'My Plan', user_path(@user),class: 'nav-link active', 'aria-current': :page %>
+                <%= link_to 'My Plan', user_path(@user) %>
               <% else %>
-                <%= link_to 'Trip Plan', user_path(@user),class: 'nav-link active', 'aria-current': :page %>
+                <%= link_to 'Trip Plan', user_path(@user) %>
               <% end %>
+              </button>
             </li>
-
-            <li class="nav-item">
-              <%= link_to 'Favorite Plan', user_likes_path(@user), class: 'nav-link disabled', tabindex: '-1', 'aria-disabled': :true %>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="profile-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#profile"
+                type="button"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+              >
+                Favorite Plan
+              </button>
             </li>
           </ul>
-
-          <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="home"
+              role="tabpanel"
+              aria-labelledby="home-tab"
+            >
+              <div class="row row-cols-1 row-cols-md-3 g-4">
             <% @posts.each do |post| %>
               <div class="col">
                <div class="my-2 mt-3">
@@ -90,6 +117,49 @@
           <div class="pagination justify-content-center mt-2">
           <%= paginate @posts %>
           </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="profile"
+              role="tabpanel"
+              aria-labelledby="profile-tab"
+            >
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <!--お気に入りプラン一覧-->
+                <% @like_posts.each do |post|%>
+                  <div class="col">
+                   <div class="my-2 mt-3">
+                    <div class="card bg-dark text-white">
+                      <!--投稿画像-->
+                      <img src="https://picsum.photos/200/250" class="card-img" >
+                      <div class="card-img-overlay">
+                        <h5 class="card-title">
+                          <!--投稿タイトル-->
+                          <%= link_to post.title, post_path(post) %>
+                        </h5>
+                        <div class="row">
+                          <div class="col-4 mt-2 pr-0">
+                            <!--コメント数-->
+                            <i class="fa-regular fa-comment fa-lg"></i>
+                            <%= post.comments.count %>
+                          </div>
+                          <div class="col-8 mt-2 p-0">
+                            <!--お気に入り-->
+                            <i class="fa-regular fa-heart fa-lg"></i>
+                            <%= post.likes.count %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+              <div class="pagination justify-content-center mt-2">
+              <%= paginate @posts %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -99,7 +169,6 @@
       <h4 class="mt-5">
         Schedule
       </h4>
-
 
 
       <% end %>
@@ -118,34 +187,66 @@
         <% end %>
       </div>
       <%= paginate @users, :param_name => 'user_page'%>
-      <!--お気に入りプラン一覧-->
-      <h4 class="mt-5">
-        Favorite Plan
-      </h4>
 
-      <% @like_posts.each do |post|%>
-      <div class="card mb-2" style="width: auto;">
-        <div class="row g-0">
-          <div class="col-md-3">
-            <img src="https://picsum.photos/70/100">
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
-              <%#= link_to image_tag( post.image.variant(resize: '100x100') ), post_path(post.id) %>
-              <h6 class="card-title">
-                <%= link_to post.title, post_path(post.id) %>
-              </h6>
-              <p class="card-text">
-                <small class="text-muted">
-                  <%= link_to post.user.name, user_path(post.user.id) %>
-                </small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
 
     </div>
   </div>
 </div>
+
+
+
+<script>
+<%# タブを切り替えた時に中身の表示を切り替えるための処理を行なっています %>
+<%# 1.タブを切り替える処理を行なっている %>
+<%# 2.中身の表示を切り替えるための処理を行なっている %>
+
+<%# 1.タブを切り替える処理を行なっている %>
+<%# 選択されているタブには active というクラス名がついており,これが 選択中 というスタイルを表現しています %>
+<%# タブを切り替えた時に, active というクラス名を元々選択されていた要素から削除し %>
+<%# 新しく選択したタブの要素に active というクラス名を追加する %>
+
+<%# 2.中身の表示を切り替えるための処理を行なっている %>
+<%# 選択されているタブに応じた div要素に show active というクラス名がついており, 1と連動して 選択中 というスタイルを表現しており, 中身が表示されています %>
+<%# タブを切り替えた時に,中身を表示しているdiv要素についている show active というクラス名を元々表示されていた要素から削除し %>
+<%# 新しく選択したタブに連動する div要素に show active というクラス名を追加して中身を表示する %>
+
+const profileTab = document.getElementById('profile-tab')
+const profileBody = document.getElementById('profile')
+
+if (profileTab) {
+  profileTab.addEventListener('click', function() {
+    const elements = document.getElementsByClassName('nav-link active')
+    elements[0].classList.remove('active')
+
+    let panes = document.getElementsByClassName('tab-pane fade show active')
+    panes[0].classList.remove('show')
+
+    panes = document.getElementsByClassName('tab-pane fade active')
+    panes[0].classList.remove('active')
+
+    profileTab.classList.add('active')
+    profileBody.classList.add('show')
+    profileBody.classList.add('active')
+  })
+}
+
+const homeTab = document.getElementById('home-tab')
+const homeBody = document.getElementById('home')
+
+if (homeTab) {
+  homeTab.addEventListener('click', function() {
+    const elements = document.getElementsByClassName('nav-link active')
+    elements[0].classList.remove('active')
+
+    let panes = document.getElementsByClassName('tab-pane fade show active')
+    panes[0].classList.remove('show')
+
+    panes = document.getElementsByClassName('tab-pane fade active')
+    panes[0].classList.remove('active')
+
+    homeTab.classList.add('active')
+    homeBody.classList.add('show')
+    homeBody.classList.add('active')
+  })
+}
+</script>

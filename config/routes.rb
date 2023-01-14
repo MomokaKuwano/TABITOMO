@@ -28,8 +28,6 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     resources :users, only: [:show, :edit, :update]
     resources :users do
       resource :relationships, only: [:create, :destroy]
-      resources :likes, only: [:index]
-      # get 'likes/index' => 'likes#index', as: 'likes'
     end
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       get 'edit_detail/:route_id' => 'posts#edit_detail', as: 'edit_detail'
