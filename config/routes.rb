@@ -27,14 +27,16 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     patch 'users/destroy' => 'users#destroy', as: 'unsubscribe'
     resources :users, only: [:show, :edit, :update]
     resources :users do
-      # get 'likes/index' => 'likes#index', as: 'likes'
       resource :relationships, only: [:create, :destroy]
+      resources :likes, only: [:index]
+      # get 'likes/index' => 'likes#index', as: 'likes'
     end
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       get 'edit_detail/:route_id' => 'posts#edit_detail', as: 'edit_detail'
       resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
+
     resources :packs, only: [:index, :create, :show]
     resources :items, only: [:create, :inde]
 
