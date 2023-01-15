@@ -61,11 +61,11 @@
       </div>
     <div class="col-md-3 mt-3">
         <h4 class="mt-5">
-          User
+          User search
         </h4>
         <!--ユーザー検索-->
           <%= form_with url: root_path, method: :get, local: true, class: "d-inline-flex" do |f| %>
-          <%= f.text_field :name, class: "form-control mr-2", type: "search", placeholder: "User Name" %>
+          <%= f.text_field :name, class: "form-control mr-2", type: "search", placeholder: "Name" %>
           <%= f.submit :search, class: "btn btn-info rounded-pill btn-sm" %>
         <% end %>
         <h5 class="mt-4">
