@@ -30,6 +30,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       resource :relationships, only: [:create, :destroy]
     end
     resources :packs, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :items, only: [:create, :update, :destroy]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       get 'edit_detail/:route_id' => 'posts#edit_detail', as: 'edit_detail'
       resource :likes, only: [:create, :destroy]
