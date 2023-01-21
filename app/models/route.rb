@@ -3,6 +3,8 @@ class Route < ApplicationRecord
   has_one_attached :image
   belongs_to :post
 
+  validates :spot, presence: true
+  validates :caption, presence: true
 
 def get_image
   unless image.attached?

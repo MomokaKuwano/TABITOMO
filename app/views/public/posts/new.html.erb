@@ -12,6 +12,17 @@
         <div class="col-md-5">
           <!--Google Map API-->
           <div id="map" style="height: 300px; width: 100%;"></div>
+          <!--エラーメッセージ-->
+
+          <% if @route.errors.any? %>
+            <div class="alert alert-warning mt-3">
+              <ul style="list-style: none;">
+                <% @route.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
             <!--routeに各情報を追加する-->
             <%= form_with model: @route, url: posts_path do |f| %>
               <!--緯度・経度を保存-->

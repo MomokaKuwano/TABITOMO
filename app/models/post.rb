@@ -16,5 +16,6 @@ class Post < ApplicationRecord
 
   # updateの時だけvalidationを実行させる
   validates :title, presence: true, on: :update
+  
 
 end
