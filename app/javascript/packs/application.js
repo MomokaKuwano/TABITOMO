@@ -20,3 +20,6 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 // Turbolinks.start()
 ActiveStorage.start()
+
+require('jquery') //jQeryに依存しているため、ないと動かない
+import "cocoon"   //cocoonを動かすための記述

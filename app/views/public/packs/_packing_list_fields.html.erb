@@ -1,0 +1,8 @@
+<div class="nested-fields field">
+  <div>items</div>
+  <div>
+    <label class="control-label">item</label>
+    <%= f.text_field :item_id %>
+  </div>
+  <%= link_to_remove_association 'delete', f, class: 'btn btn-danger' %>
+</div>

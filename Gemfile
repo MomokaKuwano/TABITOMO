@@ -68,3 +68,5 @@ gem "gon"
 gem "dotenv-rails"
 # ページネーション
 gem 'kaminari','~> 1.2.1'
+
+gem 'cocoon'
