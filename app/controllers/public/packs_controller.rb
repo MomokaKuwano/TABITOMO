@@ -1,7 +1,6 @@
 class Public::PacksController < ApplicationController
 
   def index
-
     @packs = current_user.packs.all
     @pack = Pack.new
   end
@@ -48,13 +47,8 @@ class Public::PacksController < ApplicationController
 
   private
 
-  # def pack_params
-  #   params.require(:pack).permit(:pack_title).merge(user_id: current_user.id)
-  # end
   def pack_params
     params.require(:pack).permit(:pack_title)
-    #   packing_lists_attributes: [:id, :item_id, :name, :_destroy]
-    # )
   end
 
 

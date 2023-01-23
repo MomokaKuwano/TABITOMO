@@ -6,30 +6,20 @@
           <h3>Let’s Packing!</h3>
           <p>Pack Pack Pack</p>
         </div>
-        <div class="row">
-          <div class="col-xs-3 mb-3">
-            <!--タイトルフォーム-->
-            <!--<%#= form_with model: @pack, id: "pack-title", class: 'd-flex align-items-center' do |f| %>-->
-            <!--<div class="mx-3">-->
-            <!--  <i class="fa-solid fa-bookmark"></i>-->
-            <!--</div>-->
-            <!--  <%#= f.text_field :pack_title, class: 'form-control', placeholder: "List Title" %>-->
-            <!--<%# end %>-->
+        <!--タイトルフォーム-->
+        <%= form_with model: @pack do |f| %>
+          <div class="row">
+            <div class="col-xs-3 mb-3">
+              <div class="d-flex align-items-center mx-3">
+                <i class="fa-solid fa-bookmark mr-2"></i>
+                <%= f.text_field :pack_title, class: 'form-control', placeholder: "List Title" %>
+              </div>
+            </div>
           </div>
-        </div>
         <div class="bg-2 p-4">
           <!--アイテム追加-->
           <h4>Packing Item</h4>
-            <%= form_with model: @pack do |f| %>
-            <div class="row">
-              <div class="col-xs-3 mb-3">
-                <div class="d-flex align-items-center mx-3">
-                  <i class="fa-solid fa-bookmark mr-2"></i>
-                  <%= f.text_field :pack_title, class: 'form-control', placeholder: "List Title" %>
-                </div>
-              </div>
-            </div>
-            <%= f.fields_for :packing_lists do |item| %>
+          <%= f.fields_for :packing_lists do |item| %>
             <div class="row">
               <div class="col-xs-3 mb-3">
                 <div class="field">
@@ -42,41 +32,12 @@
             </div>
             <% end %>
             <div class="links my-3">
-              <%= link_to_add_association '＋', f, :packing_lists, class: 'btn btn-default btn-light rounded-pill btn-sm' %>
+              <%= link_to_add_association '＋', f, :packing_lists, class: 'btn btn-default btn-light rounded-pill' %>
             </div>
             <div class="d-flex justify-content-center mt-2">
               <%= f.submit "Create List", class: 'btn btn-default btn-info rounded-pill' %>
             </div>
-            <% end %>
-
-
-          <!--  <%#= form_with model: @item, class: 'd-flex align-items-center' do |f| %>-->
-          <!--    <%#= f.text_field :name, class: 'form-control', placeholder: "Item" %>-->
-          <!--    <%#= f.submit "add!" , class: 'btn btn-info rounded-pill btn-sm mx-3' %>-->
-          <!--  <%# end %>-->
-          <!--<hr>-->
-          <!--<div class="mt-3">-->
-          <!--  <%# @items.each do |item| %>-->
-          <!--  <div class="d-flex align-items-center mb-2">-->
-          <!--    <%#= form_with model: item, method: :patch, class: 'd-flex w-100' do |f| %>-->
-          <!--      <%#= f.text_field :name, class: 'form-control' %>-->
-          <!--      <%#= button_tag type: 'submit', class: 'btn btn-default' do %>-->
-          <!--        <i class="fa-solid fa-pen-to-square"></i>-->
-          <!--      <%# end %>-->
-          <!--    <%# end %>-->
-          <!--    <%#= link_to item_path(item.id), method: :delete do %>-->
-          <!--      <i class="fa-solid fa-trash"></i>-->
-          <!--    <%# end %>-->
-          <!--  </div>-->
-          <!--  <%# end %>-->
-          <!--</div>-->
-          <!--<%# if @items.count > 0 %>-->
-          <!--<div class="d-flex justify-content-center mt-4">-->
-          <!--  <%#= button_tag type: 'submit', form: 'pack-title', class: 'btn btn-default btn-info rounded-pill' do %>-->
-          <!--    List Create!-->
-          <!--  <%# end %>-->
-          <!--</div>-->
-          <!--<%# end %>-->
+          <% end %>
         </div>
       </div>
     </div>
@@ -93,9 +54,7 @@
             <% end %>
           </div>
         </div>
-
       <% end %>
-
       </div>
     </div>
   </div>

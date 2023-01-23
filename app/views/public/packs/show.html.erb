@@ -1,34 +1,37 @@
 <div class="container">
-  <div class="bg-1 mt-5 p-4">
-    <div class="mt-2 ml-2">
-      <h3>Let’s Packing!</h3>
-      <p>Pack Pack Pack</p>
-    </div>
-    <div class="mt-4">
-      <div class="bg-2 p-4">
-        <!--タイトル-->
-      <h4 class="d-flex align-items-center">
-        <div class="mr-5">
-          <i class="fa-solid fa-bookmark fa-sm"></i>
-          <%= @pack.pack_title %>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="bg-1 mt-5 p-4">
+        <div class="mt-2 ml-2">
+          <h3>Let’s Packing!</h3>
+          <p>Pack Pack Pack</p>
         </div>
-        <% if @pack.user == current_user %>
-          <%= link_to edit_pack_path(@pack) do %>
-          <i class="fa-solid fa-pen-to-square fa-sm"></i>
-          <% end %>
-        <% end %>
-
-        <%= link_to pack_path(@pack.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ml-3' do %>
-          <i class="fa-solid fa-trash fa-sm"></i>
-        <% end %>
-      </h4>
-      <hr>
-      <div>
-        <% @items.each do |item| %>
-        <div>
-         <%= item.name %>
+        <div class="mt-4">
+          <div class="bg-2 p-4">
+            <!--タイトル-->
+            <h4 class="d-flex align-items-center">
+              <div class="mr-5">
+                <i class="fa-solid fa-bookmark fa-sm"></i>
+                <%= @pack.pack_title %>
+              </div>
+              <% if @pack.user == current_user %>
+                <%= link_to edit_pack_path(@pack) do %>
+                <i class="fa-solid fa-pen-to-square fa-sm"></i>
+                <% end %>
+              <% end %>
+              <%= link_to pack_path(@pack.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ml-3' do %>
+                <i class="fa-solid fa-trash fa-sm"></i>
+              <% end %>
+            </h4>
+            <hr>
+          <div>
+            <% @items.each do |item| %>
+            <h5 class="mb-2">
+             <%= item.name %>
+            </h5>
+            <% end %>
+          </div>
         </div>
-        <% end %>
       </div>
     </div>
   </div>
