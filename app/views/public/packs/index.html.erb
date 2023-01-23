@@ -20,19 +20,33 @@
         <div class="bg-2 p-4">
           <!--アイテム追加-->
           <h4>Packing Item</h4>
-
             <%= form_with model: @pack do |f| %>
-              <%= f.text_field :pack_title, class: 'form-control', placeholder: "List Title" %>
-
-              <%= f.fields_for :packing_lists do |item| %>
-                <div class="field">
-                  <%= render 'packing_list_fields', f, :item %>
+            <div class="row">
+              <div class="col-xs-3 mb-3">
+                <div class="d-flex align-items-center mx-3">
+                  <i class="fa-solid fa-bookmark mr-2"></i>
+                  <%= f.text_field :pack_title, class: 'form-control', placeholder: "List Title" %>
                 </div>
-              <% end %>
-              <div class="links">
-                <%= link_to_add_association 'item add', f, :packing_lists %>
               </div>
-              <%= f.submit %>
+            </div>
+            <%= f.fields_for :packing_lists do |item| %>
+            <div class="row">
+              <div class="col-xs-3 mb-3">
+                <div class="field">
+                    <h5 class="my-3">
+                      items
+                    </h5>
+                    <%= render 'packing_list_fields', f, :item %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+            <div class="links my-3">
+              <%= link_to_add_association '＋', f, :packing_lists, class: 'btn btn-default btn-light rounded-pill btn-sm' %>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <%= f.submit "Create List", class: 'btn btn-default btn-info rounded-pill' %>
+            </div>
             <% end %>
 
 
@@ -70,17 +84,17 @@
       <h4 class="mt-5">
         Memory
       </h4>
-      <!--<%# @packs.each do |pack| %>-->
-      <!--  <%#= link_to pack_path(pack) do %>-->
-      <!--  <div class="card bg-light mb-3" style="max-width: 18rem;">-->
-      <!--    <div class="card-body">-->
-      <!--      <h5 class="card-title"><%#= pack.pack_title %></h5>-->
-      <!--      <p class="card-text"><%#= pack.created_at.strftime('%Y/%m/%d') %></p>-->
-      <!--      <%# end %>-->
-      <!--    </div>-->
-      <!--  </div>-->
+      <% @packs.each do |pack| %>
+        <%= link_to pack_path(pack) do %>
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= pack.pack_title %></h5>
+            <p class="card-text"><%= pack.created_at.strftime('%Y/%m/%d') %></p>
+            <% end %>
+          </div>
+        </div>
 
-      <!--<%# end %>-->
+      <% end %>
 
       </div>
     </div>
