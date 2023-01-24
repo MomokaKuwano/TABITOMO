@@ -13,7 +13,33 @@
           <!--ナビゲーションバー-->
           <div class="text-info">
             <ul class="nav flex-column list-unstyled">
-              <% if user_signed_in? %>
+              <% if admin_signed_in? %>
+              <!--Adminログイン時-->
+                <div class="mb-2">
+                  <li class="nav-item">
+                    <%=link_to admin_users_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fas fa-user fa-fw"></i>
+                      Users
+                    <% end %>
+                  </li>
+                </div>
+                <!--マイページ-->
+                <div class="mb-2">
+                  <li class="nav-item">
+                    <%=link_to admin_root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fas fa-pen-nib fa-fw"></i>
+                      Topic
+                    <% end %>
+                  </li>
+                </div>
+                <!--ログアウト-->
+                <li class="nav-item">
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+                    Log out
+                  <% end %>
+                </li>
+              <% elsif user_signed_in? %>
                 <!--Userログイン時-->
                 <!--ダッシュボード-->
                 <div class="mb-2">

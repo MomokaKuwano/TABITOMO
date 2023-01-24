@@ -18,6 +18,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:index, :show]
+    patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   end
 
  # URLは変えない/ファイル構成だけ指定のパス
