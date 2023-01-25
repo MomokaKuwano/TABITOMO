@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   # ログイン認証が成功していないと、トップページ以外の画面は表示できない仕様
-  # before_action :authenticate_user!, except: [:top]
-  # before_action :authenticate_user!, except: [:top], unless: :admin_logged_in?
-  # before_action :authenticate_admin!
+
+  before_action :authenticate_user!, except: [:top], unless: :admin_signed_in?
   # devise利用の機能（ユーザ登録、ログイン認証など）が使われる前にconfigure_permitted_parametersメソッドが実行
   before_action :configure_permitted_parameters, if: :devise_controller?
   # サインイン後の遷移ページ

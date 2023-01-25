@@ -1,5 +1,4 @@
 class Public::ItemsController < ApplicationController
-
 #   def create
 #     @items = current_user.items
 #     @packs = current_user.packs

@@ -6,7 +6,17 @@
           <h3>Let’s Packing!</h3>
           <p>Pack Pack Pack</p>
         </div>
-        <!--タイトルフォーム-->
+        <!--エラーメッセージ-->
+          <% if @pack.errors.any? %>
+            <div class="alert alert-warning mt-3">
+              <ul style="list-style: none;">
+                <% @pack.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <!--タイトルフォーム-->
         <%= form_with model: @pack do |f| %>
           <div class="row">
             <div class="col-xs-3 mb-3">

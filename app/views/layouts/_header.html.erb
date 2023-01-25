@@ -23,7 +23,7 @@
                     <% end %>
                   </li>
                 </div>
-                <!--マイページ-->
+                <!--トピック-->
                 <div class="mb-2">
                   <li class="nav-item">
                     <%=link_to admin_root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
@@ -95,12 +95,21 @@
                     <% end %>
                   </li>
                 </div>
+                 <!--ゲストログイン-->
+                <div class="mb-2">
+                  <li class="nav-item">
+                    <%=link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fas fa-laugh fa-fw"></i>
+                      Guest
+                    <% end %>
+                  </li>
+                </div>
                 <!--ログイン-->
                 <div class="mb-2">
                   <li class="nav-item">
                     <%=link_to new_user_session_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fa-solid fa-right-to-bracket fa-fw"></i>
-                      Log in
+                      Login
                     <% end %>
                   </li>
                 </div>

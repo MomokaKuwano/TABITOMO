@@ -18,15 +18,14 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:index, :show]
-    patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   end
 
  # URLは変えない/ファイル構成だけ指定のパス
   scope module: :public do
     root to: 'homes#top'
     get 'homes/map' => 'homes#map', as: 'map'
-    patch 'users/destroy' => 'users#destroy', as: 'unsubscribe'
     resources :users, only: [:show, :edit, :update]
+    patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     resources :users do
       resource :relationships, only: [:create, :destroy]
     end
