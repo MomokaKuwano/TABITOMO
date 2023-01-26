@@ -6,7 +6,6 @@ class Pack < ApplicationRecord
   accepts_nested_attributes_for :packing_lists, allow_destroy: true
 
   validates_associated :items
-
   validates :items, presence: true
   validates :pack_title, presence: true
 

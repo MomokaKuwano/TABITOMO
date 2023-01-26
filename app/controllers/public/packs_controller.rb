@@ -8,19 +8,20 @@ class Public::PacksController < ApplicationController
   def create
     # 空のitem作成
     @items = []
-    # hashのeach文でitemのnameを保存する
-    params[:pack][:packing_lists_attributes].each do |k, v|
-      @items << Item.find_or_create_by(name: v[:item_id], user_id: current_user.id)
-    end
     @pack = Pack.new(pack_params)
     @pack.user_id = current_user.id
     if @pack.save
+    # hashのeach文でitemのnameを保存する
+      params[:pack][:packing_lists_attributes].each do |k, v|
+        @items << Item.find_or_create_by(name: v[:item_id], user_id: current_user.id)
+      end
       # packingリストにそれぞれのidを保存
       @items.each do |item|
         PackingList.create(pack_id: @pack.id, item_id: item.id)
       end
       redirect_to pack_path(Pack.last)
     else
+      @packs = current_user.packs.all
       render :index
     end
   end
