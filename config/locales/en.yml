@@ -30,4 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      pack: "pack"
+      packing_lists: "item"
+    attributes:
+      pack:
+        pack_title: "title"
+        packing_lists: "item"
+      packing_lists:
+        item: "item"
+

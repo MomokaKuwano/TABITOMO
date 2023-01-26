@@ -38,7 +38,7 @@ class Public::PostsController < ApplicationController
       # Postの下書きまたは投稿
       @post = Post.find(params[:id])
       if @post.update(post_params)
-        flash[:success] = 'Post created!'
+        flash[:notice] = 'Post created!'
         redirect_to post_path(@post)
       else
         # 条件を指定して初めの1件を取得し1件もなければ作成

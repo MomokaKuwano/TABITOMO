@@ -4,7 +4,9 @@
     <!--<label class="control-label">item</label>-->
     <div class="row m-2">
       <div class="col-xs-3">
-        <%= f.text_field :item_id, class: 'form-control', placeholder: "Item" %>
+        <%= f.fields_for :item do |ff| %>
+        <%= ff.text_field :name, class: 'form-control', placeholder: "Item" %>
+        <% end %>
       </div>
       <div class="ml-3 mt-1 text-white">
       <%= link_to_remove_association 'delete', f, class: 'btn btn-danger rounded-pill btn-sm' %>

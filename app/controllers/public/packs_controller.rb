@@ -8,19 +8,27 @@ class Public::PacksController < ApplicationController
   def create
     # 空のitem作成
     @items = []
+  # Transaction 開始
     @pack = Pack.new(pack_params)
     @pack.user_id = current_user.id
-    if @pack.save
     # hashのeach文でitemのnameを保存する
+    if params[:pack][:packing_lists_attributes] != nil
       params[:pack][:packing_lists_attributes].each do |k, v|
-        @items << Item.find_or_create_by(name: v[:item_id], user_id: current_user.id)
+        @items << Item.find_or_create_by(name: v[:item][:name], user_id: current_user.id)
       end
-      # packingリストにそれぞれのidを保存
-      @items.each do |item|
-        PackingList.create(pack_id: @pack.id, item_id: item.id)
-      end
+    end
+
+    # @pack.packing_listsに新しいitem_idを持ったPackingListを生成する
+    @items.each do |item|
+      @pack.packing_lists << PackingList.new(item_id: item.id)
+    end
+    # フォームで作られたPackとPackingListを同時に保存する
+    if @pack.save
+  # Transaction commit
+      flash[:notice] = "Saved Packing!"
       redirect_to pack_path(Pack.last)
     else
+  # Transaction rollback
       @packs = current_user.packs.all
       render :index
     end
