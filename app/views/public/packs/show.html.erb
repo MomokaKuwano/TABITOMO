@@ -3,7 +3,6 @@
     <div class="col-md-9">
       <div class="bg-1 mt-5 p-4">
         <div class="mt-2 ml-2">
-          <%= notice %>
           <h3>Let’s Packing!</h3>
           <p>Pack Pack Pack</p>
         </div>
@@ -16,12 +15,12 @@
                 <%= @pack.pack_title %>
               </div>
               <% if @pack.user == current_user %>
-                <%= link_to edit_pack_path(@pack) do %>
-                <i class="fa-solid fa-pen-to-square fa-sm"></i>
+                <!--<%#= link_to edit_pack_path(@pack) do %>-->
+                <!--  <i class="fa-solid fa-pen-to-square fa-sm"></i>-->
+                <!--<%# end %>-->
+                <%= link_to pack_path(@pack.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ml-3' do %>
+                  <i class="fa-solid fa-trash fa-sm"></i>
                 <% end %>
-              <% end %>
-              <%= link_to pack_path(@pack.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ml-3' do %>
-                <i class="fa-solid fa-trash fa-sm"></i>
               <% end %>
             </h4>
             <hr>

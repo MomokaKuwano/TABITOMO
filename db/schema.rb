@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 2023_01_06_132434) do
   create_table "routes", force: :cascade do |t|
     t.integer "post_id", null: false
     t.string "spot", null: false
-    t.date "date"
-    t.time "time"
+    t.date "date", null: false
+    t.time "time", null: false
     t.text "caption", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false

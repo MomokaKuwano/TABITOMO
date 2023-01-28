@@ -5,6 +5,10 @@ class Route < ApplicationRecord
 
   validates :spot, presence: true
   validates :caption, presence: true
+  validates :date, presence: true
+  validates :time, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 
 def get_image
   unless image.attached?

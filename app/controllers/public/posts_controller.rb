@@ -38,12 +38,13 @@ class Public::PostsController < ApplicationController
       # Postの下書きまたは投稿
       @post = Post.find(params[:id])
       if @post.update(post_params)
-        flash[:notice] = 'Post created!'
+        flash[:success] = "Post created!"
         redirect_to post_path(@post)
       else
         # 条件を指定して初めの1件を取得し1件もなければ作成
-        @post = Post.find_or_create_by(user_id: current_user.id, status: false)
+        #@post = Post.find_or_create_by(user_id: current_user.id, status: false)
         @post.routes.build
+        @route = Route.new
         # @post.idに紐づいたrouteを全て持ってくる
         @routes = Route.where(post_id: @post.id)
         render :new
@@ -54,6 +55,14 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    routes = @post.routes
+    @route_group = []
+    ## 存在する日にちをとってくる(配列)
+    dates = routes.pluck(:date).uniq
+    ## 日にちごとのroutesを配列に入れる
+    dates.each do |date|
+      @route_group << routes.where(date: date).order(:time)
+    end
   end
 
   def edit
@@ -77,6 +86,13 @@ class Public::PostsController < ApplicationController
       redirect_to new_post_path
     end
   end
+
+  # def destroy_post
+
+  #   flash[:success] = "Successfully removed post!"
+    # redirect_to user_path(@user)
+  # end
+
 
   private
 	def route_params

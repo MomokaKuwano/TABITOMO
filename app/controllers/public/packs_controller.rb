@@ -25,7 +25,7 @@ class Public::PacksController < ApplicationController
     # フォームで作られたPackとPackingListを同時に保存する
     if @pack.save
   # Transaction commit
-      flash[:notice] = "Saved Packing!"
+      flash[:success] = "Saved Packing!"
       redirect_to pack_path(Pack.last)
     else
   # Transaction rollback
@@ -51,6 +51,7 @@ class Public::PacksController < ApplicationController
   def destroy
     pack = Pack.find(params[:id])
     pack.destroy
+    flash[:success] = "Successfully removed packing!"
     redirect_to packs_path
   end
 

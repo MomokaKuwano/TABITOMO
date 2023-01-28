@@ -60,8 +60,8 @@
 
     <div class="row">
       <div class="col-md-5">
-        <!--Google Map API-->
-        <div id="map" style="height: 500px; width: 100%;"></div>
+      <!--Google Map API-->
+      <div id="map" style="height: 500px; width: 100%;"></div>
       <div>
           <div class="d-flex text-align-center">
             <div class="mt-2 mr-3">
@@ -123,33 +123,40 @@
       </div>
       <div class="col-md-7">
       <!--投稿内容-->
-      <% @post.routes.each do |route| %>
-        <p class="card-text mt-2 mb-1">
-        <!--時間-->
-        <%= route.time.strftime("%H:%M") %>
-        </p>
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <!--投稿画像-->
-              <%= image_tag route.get_image, size: "150x100" %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body p-0 p-2">
-                <h5 class="card-title m-0">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <!--投稿スポット-->
-                  <%= route.spot %>
-                </h5>
+      <% @route_group.each do |route_group| %>
+        <h5 class="mb-1">
+          <%= route_group.first.date.strftime("%Y/%m/%d") %>
+        </h5>
+        <div class="bg-3 p-3 mb-3">
+        <% route_group.each do |route| %>
+          <div class="text-left">
+            <p class="mb-1">
+              <%= route.time.strftime("%H:%M") %>
+            </p>
+          </div>
+
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <!--投稿画像-->
+                <%= image_tag route.get_image, size: "150x100" %>
               </div>
-              <div class="mx-2">
-              <p class="card-text p-2">
-                <!--投稿キャプション-->
-                <%= route.caption %>
-              </p>
-            </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <!--投稿スポット-->
+                    <%= route.spot %>
+                    </h5>
+                  <p class="card-text">
+                    <!--投稿キャプション-->
+                    <%= route.caption %>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
+          <% end %>
         </div>
       <% end %>
       </div>
@@ -168,7 +175,7 @@
     geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
       map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
         center: {lat: pin.lat, lng: pin.lng}, //最初に表示する場所
-        zoom: 4, //拡大率（1〜21まで設定可能）
+        zoom: 8, //拡大率（1〜21まで設定可能）
       });
       marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
         position:  {lat: pin.lat, lng: pin.lng}, //マーカーを落とす位置を決める（値はDBに入っている）

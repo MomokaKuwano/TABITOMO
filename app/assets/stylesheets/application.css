@@ -30,6 +30,11 @@ a,a:hover,a:visited{
     border-radius: 10px;
 }
 
+.bg-3{
+    background-color: #efefef;
+    border-radius: 10px;
+}
+
 img {
   object-fit: cover;
 }

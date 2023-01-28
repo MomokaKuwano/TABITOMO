@@ -13,7 +13,7 @@
           <!--Google Map API-->
           <div id="map" style="height: 300px; width: 100%;"></div>
           <!--エラーメッセージ-->
-          <% if @route.errors.any? %>
+          <% if @route.present? && @route.errors.any? %>
             <div class="alert alert-warning mt-3">
               <ul style="list-style: none;">
                 <% @route.errors.full_messages.each do |message| %>
@@ -70,6 +70,16 @@
         <div class="col-md-7">
           <!--routeの投稿が1つでもあればタイトルフォーム以降表示-->
           <% if @post.routes.count > 0 %>
+          <!--エラーメッセージ-->
+          <% if @post.errors.any? %>
+            <div class="alert alert-warning mt-3">
+              <ul style="list-style: none;">
+                <% @post.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
           <!--タイトルフォーム-->
             <%= form_with model: @post, url: post_path(@post), local: true, multipart: true do |f| %>
             <div class="d-inline-flex">
@@ -80,7 +90,7 @@
             <% @routes.each do |route|%>
               <p class="card-text mt-2 mb-1">
                 <!--旅行日-->
-                <%= route.date.strftime("%Y-%m-%d") %>
+                <%= route.date.strftime("%Y/%m/%d") %>
               </p>
               <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
