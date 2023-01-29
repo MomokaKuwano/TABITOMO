@@ -4,9 +4,9 @@ class Public::HomesController < ApplicationController
     @posts = Post.published.page(params[:post_page])
     # ユーザー検索
     if params[:name].present?
-       @users = User.where('name LIKE ?', "%#{params[:name]}%").page(params[:user_page]).per(5)
+       @users = User.where('name LIKE ?', "%#{params[:name]}%").page(params[:user_page]).per(9)
     else
-      @users = User.page(params[:user_page]).per(5)
+      @users = User.page(params[:user_page]).per(9)
     end
     # スポット検索
     if params[:keyword].present?

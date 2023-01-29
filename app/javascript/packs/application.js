@@ -23,3 +23,6 @@ ActiveStorage.start()
 
 require('jquery') //jQeryに依存しているため、ないと動かない
 import "cocoon"   //cocoonを動かすための記述
+
+//= require jquery
+//= require rails-ujs
