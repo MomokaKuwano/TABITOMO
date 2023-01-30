@@ -1,11 +1,11 @@
 <header>
   <div class="container">
     <div class="row">
-      <div class="mt-3">
+      <div class="bg-5">
         <!--リストをサイドに固定-->
         <div class="sidebox" data-spy="affix" data-offset-top="100">
         <!--ロゴ-->
-          <div class="mb-4">
+          <div class="mt-2 mb-4">
             <a href="/">
               <%= image_tag "tabitomologo.png", size: "160x160" %>
             </a>
@@ -33,12 +33,14 @@
                   </li>
                 </div>
                 <!--ログアウト-->
-                <li class="nav-item">
-                  <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                    <i class="fa-solid fa-right-from-bracket fa-fw"></i>
-                    Log out
-                  <% end %>
-                </li>
+                <div class="mb-3">
+                  <li class="nav-item">
+                    <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+                      Log out
+                    <% end %>
+                  </li>
+                </div>
               <% elsif user_signed_in? %>
                 <!--Userログイン時-->
                 <!--ダッシュボード-->
@@ -69,7 +71,7 @@
                 </li>
                 </div>
                 <!--プランニング-->
-                 <div class="mb-2">
+                <div class="mb-2">
                 <li class="nav-item">
                   <%=link_to new_post_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                     <i class="fas fa-plane fa-fw"></i>
@@ -78,12 +80,14 @@
                 </li>
                 </div>
                 <!--ログアウト-->
-                <li class="nav-item">
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                    <i class="fa-solid fa-right-from-bracket fa-fw"></i>
-                    Log out
-                  <% end %>
-                </li>
+                <div class="mb-3">
+                  <li class="nav-item">
+                    <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+                      Log out
+                    <% end %>
+                  </li>
+                </div>
               <% else %>
                 <!--User未ログイン時-->
                 <!--ダッシュボード-->
@@ -114,12 +118,14 @@
                   </li>
                 </div>
                 <!--新規登録-->
+                <div class="mb-3">
                   <li class="nav-item">
                     <%=link_to new_user_registration_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fa-solid fa-user-plus fa-fw"></i>
                       Sign up
                     <% end %>
                   </li>
+                </div>
               <% end %>
             </ul>
           </div>

@@ -35,6 +35,30 @@ a,a:hover,a:visited{
     border-radius: 10px;
 }
 
+.bg-4{
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    padding: 7px 10px;
+}
+
+.bg-5{
+    background-color: white;
+    opacity: 0.8;
+    padding: 7px 10px;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: #DAA520;
+}
+
+
+body {
+  background-image: image-url("pero-kalimero-9BJRGlqoIUk-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
 img {
   object-fit: cover;
 }
