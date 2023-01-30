@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def unsubscribe
+  def withdrawal
     @user = current_user
     @user.update(is_deleted: true)
     reset_session

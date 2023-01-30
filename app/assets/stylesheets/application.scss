@@ -46,11 +46,20 @@ a,a:hover,a:visited{
     background-color: white;
     opacity: 0.8;
     padding: 7px 10px;
-    border-left: 1px solid;
-    border-right: 1px solid;
-    border-color: #DAA520;
 }
 
+.bg-6{
+    background-color: rgba(0,0,0,0.3);
+    padding: 20px 20px 130px;
+}
+
+.triangle {
+  opacity: 0.8;
+  border-top: 90px solid white;
+  border-right: 90px solid white;
+  border-left: 90px solid white;
+  border-bottom: 90px solid transparent;
+}
 
 body {
   background-image: image-url("pero-kalimero-9BJRGlqoIUk-unsplash.jpg");

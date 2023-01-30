@@ -17,36 +17,43 @@
               <!--Adminログイン時-->
                 <div class="mb-2">
                   <li class="nav-item">
-                    <%=link_to admin_users_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%= link_to admin_users_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fas fa-user fa-fw"></i>
                       Users
                     <% end %>
                   </li>
                 </div>
-                <!--トピック-->
+                <!--投稿一覧-->
                 <div class="mb-2">
                   <li class="nav-item">
-                    <%=link_to admin_root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                      <i class="fas fa-pen-nib fa-fw"></i>
-                      Topic
+                    <%= link_to admin_root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                      <i class="fas fa-plane fa-fw"></i>
+                      Posts
                     <% end %>
                   </li>
                 </div>
+                <!--トピック-->
+                <!--<div class="mb-2">-->
+                <!--  <li class="nav-item">-->
+                <!--    <%#=link_to admin_root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>-->
+                <!--      <i class="fas fa-pen-nib fa-fw"></i>-->
+                <!--      Topic-->
+                <!--    <%# end %>-->
+                <!--  </li>-->
+                <!--</div>-->
                 <!--ログアウト-->
-                <div class="mb-3">
-                  <li class="nav-item">
-                    <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                      <i class="fa-solid fa-right-from-bracket fa-fw"></i>
-                      Log out
-                    <% end %>
-                  </li>
-                </div>
+                <li class="nav-item">
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+                    Log out
+                  <% end %>
+                </li>
               <% elsif user_signed_in? %>
                 <!--Userログイン時-->
                 <!--ダッシュボード-->
                 <div class="mb-2">
                   <li class="nav-item">
-                    <%=link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%= link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fas fa-home fa-fw"></i>
                       Dashboard
                     <% end %>
@@ -55,7 +62,7 @@
                 <!--マイページ-->
                 <div class="mb-2">
                   <li class="nav-item">
-                    <%=link_to user_path(current_user.id), class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%= link_to user_path(current_user.id), class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fas fa-user fa-fw"></i>
                       Mypage
                     <% end %>
@@ -64,7 +71,7 @@
                 <!--パッキング-->
                 <div class="mb-2">
                 <li class="nav-item">
-                  <%=link_to packs_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                  <%= link_to packs_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                     <i class="fas fa-suitcase-rolling fa-fw"></i>
                     Packing
                   <% end %>
@@ -73,27 +80,25 @@
                 <!--プランニング-->
                 <div class="mb-2">
                 <li class="nav-item">
-                  <%=link_to new_post_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                  <%= link_to new_post_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                     <i class="fas fa-plane fa-fw"></i>
                     Planning
                   <% end %>
                 </li>
                 </div>
                 <!--ログアウト-->
-                <div class="mb-3">
-                  <li class="nav-item">
-                    <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                      <i class="fa-solid fa-right-from-bracket fa-fw"></i>
-                      Log out
-                    <% end %>
-                  </li>
-                </div>
+                <li class="nav-item">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+                    Log out
+                  <% end %>
+                </li>
               <% else %>
                 <!--User未ログイン時-->
                 <!--ダッシュボード-->
                 <div class="mb-2">
                   <li class="nav-item">
-                    <%=link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%= link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fas fa-home fa-fw"></i>
                       Dashboard
                     <% end %>
@@ -102,7 +107,8 @@
                  <!--ゲストログイン-->
                 <div class="mb-2">
                   <li class="nav-item">
-                    <%=link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%#= link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%= link_to users_guest_sign_in_path, method: :post, class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fas fa-laugh fa-fw"></i>
                       Guest
                     <% end %>
@@ -111,26 +117,25 @@
                 <!--ログイン-->
                 <div class="mb-2">
                   <li class="nav-item">
-                    <%=link_to new_user_session_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%= link_to new_user_session_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fa-solid fa-right-to-bracket fa-fw"></i>
                       Login
                     <% end %>
                   </li>
                 </div>
                 <!--新規登録-->
-                <div class="mb-3">
-                  <li class="nav-item">
-                    <%=link_to new_user_registration_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                      <i class="fa-solid fa-user-plus fa-fw"></i>
-                      Sign up
-                    <% end %>
-                  </li>
-                </div>
+                <li class="nav-item">
+                  <%= link_to new_user_registration_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <i class="fa-solid fa-user-plus fa-fw"></i>
+                    Sign up
+                  <% end %>
+                </li>
               <% end %>
             </ul>
           </div>
         </div>
       </div>
+      <div class="triangle"></div>
     </div>
   </div>
 </header>

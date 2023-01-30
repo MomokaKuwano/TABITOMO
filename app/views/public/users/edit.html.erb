@@ -42,7 +42,7 @@
                 <% end %>
             </div>
             <div class="mt-2 text-white">
-              <%= link_to "Withdrawal", unsubscribe_path, method: :patch, class: "btn btn-danger", "data-confirm" => "Are you sure?" %>
+              <%= link_to "Withdrawal", withdrawal_path, method: :patch, class: "btn btn-danger", data: { confilm: "Are you sure?" } %>
             </div>
           </div>
         </div>

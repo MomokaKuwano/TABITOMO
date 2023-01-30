@@ -32,9 +32,10 @@
       <%= f.submit "Sign up" %>
     </div>
     <% end %>
+    
     <div class="box-newusr">
       <p><span>------------</span> Already a member？ <span>------------</span></p>
-      <%= link_to "Login", new_user_session_path %>
+      <%= render "public/shared/links" %>
     </div>
   </div>
 </div>

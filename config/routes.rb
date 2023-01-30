@@ -23,9 +23,10 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
  # URLは変えない/ファイル構成だけ指定のパス
   scope module: :public do
     root to: 'homes#top'
-    get 'homes/map' => 'homes#map', as: 'map'
     resources :users, only: [:show, :edit, :update]
-    patch 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+
     resources :users do
       resource :relationships, only: [:create, :destroy]
     end

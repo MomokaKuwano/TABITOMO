@@ -17,6 +17,6 @@ class Public::HomesController < ApplicationController
     end
   end
 
-  def map
-  end
+  
+
 end
