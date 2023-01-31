@@ -87,11 +87,12 @@ class Public::PostsController < ApplicationController
     end
   end
 
-  # def destroy_post
-
-  #   flash[:success] = "Successfully removed post!"
-    # redirect_to user_path(@user)
-  # end
+  def destroy_post
+    pack = Pack.find(params[:id])
+    pack.destroy
+    flash[:success] = "Successfully removed post!"
+    redirect_to user_path(@user)
+  end
 
 
   private

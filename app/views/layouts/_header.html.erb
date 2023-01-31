@@ -60,14 +60,16 @@
                   </li>
                 </div>
                 <!--マイページ-->
-                <div class="mb-2">
-                  <li class="nav-item">
-                    <%= link_to user_path(current_user.id), class: 'btn btn-outline-info btn-block btn-lg' do %>
-                      <i class="fas fa-user fa-fw"></i>
-                      Mypage
-                    <% end %>
-                  </li>
-                </div>
+                <% if current_user.email != 'guest@example.com' %>
+                  <div class="mb-2">
+                    <li class="nav-item">
+                      <%= link_to user_path(current_user.id), class: 'btn btn-outline-info btn-block btn-lg' do %>
+                        <i class="fas fa-user fa-fw"></i>
+                        Mypage
+                      <% end %>
+                    </li>
+                  </div>
+                <% end %>
                 <!--パッキング-->
                 <div class="mb-2">
                 <li class="nav-item">
@@ -108,7 +110,7 @@
                 <div class="mb-2">
                   <li class="nav-item">
                     <%#= link_to root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                    <%= link_to users_guest_sign_in_path, method: :post, class: 'btn btn-outline-info btn-block btn-lg' do %>
+                    <%= link_to public_guest_sign_in_path, method: :post, class: 'login btn btn-outline-info btn-block btn-lg' do %>
                       <i class="fas fa-laugh fa-fw"></i>
                       Guest
                     <% end %>

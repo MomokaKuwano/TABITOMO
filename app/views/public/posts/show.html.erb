@@ -57,6 +57,11 @@
           <% end %>
         <% end %>
       </h4>
+      <% if @post.user == current_user %>
+        <%= link_to post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ml-3' do %>
+          <i class="fa-solid fa-trash fa-sm"></i>
+        <% end %>
+      <% end %>
 
     <div class="row">
       <div class="col-md-5">
