@@ -55,13 +55,11 @@
           <%= link_to edit_post_path(@post) do %>
           <i class="fa-solid fa-pen-to-square fa-sm"></i>
           <% end %>
+          <%= link_to destroy_post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ml-3' do %>
+            <i class="fa-solid fa-trash fa-sm"></i>
+          <% end %>
         <% end %>
       </h4>
-      <% if @post.user == current_user %>
-        <%= link_to post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ml-3' do %>
-          <i class="fa-solid fa-trash fa-sm"></i>
-        <% end %>
-      <% end %>
 
     <div class="row">
       <div class="col-md-5">
@@ -76,21 +74,10 @@
             </div>
             <div class="mt-2">
               <!--お気に入り-->
-              <% if @post.liked_by?(current_user) %>
-                <p>
-                  <%= link_to post_likes_path(@post), method: :delete do %>
-                    <i class="fa-solid fa-heart fa-lg"></i>
-                    <%= @post.likes.count %>
-                  <% end %>
-                </p>
-                <% else %>
-                <p>
-                  <%= link_to post_likes_path(@post), method: :post do %>
-                    <i class="fa-regular fa-heart fa-lg"></i>
-                    <%= @post.likes.count %>
-                  <% end %>
-                </p>
-              <% end %>
+              <div id="post_<%= @post.id %>">
+                <%= render "public/posts/liked", post: @post %>
+              </div>
+
             </div>
           </div>
 
@@ -180,7 +167,7 @@
     geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
       map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
         center: {lat: pin.lat, lng: pin.lng}, //最初に表示する場所
-        zoom: 8, //拡大率（1〜21まで設定可能）
+        zoom: 5, //拡大率（1〜21まで設定可能）
       });
       marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
         position:  {lat: pin.lat, lng: pin.lng}, //マーカーを落とす位置を決める（値はDBに入っている）

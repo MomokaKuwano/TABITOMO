@@ -1,4 +1,5 @@
 class Public::PacksController < ApplicationController
+  before_action :ensure_login_user, only: %i[show]
 
   def index
     @packs = current_user.packs.all
@@ -41,11 +42,15 @@ class Public::PacksController < ApplicationController
   end
 
   def edit
-
+    @pack = Pack.find(params[:id])
+    @items = @pack.items
   end
 
   def update
-
+    @pack = Pack.find(params[:id])
+    if @pack.update(pack_params)
+      redirect_to pack_path(pack.id)
+    end
   end
 
   def destroy
@@ -61,5 +66,13 @@ class Public::PacksController < ApplicationController
     params.require(:pack).permit(:pack_title)
   end
 
+  # ログインしているユーザーが他のユーザーの登録情報をみれないようにする
+  def ensure_login_user
+     @pack = Pack.find(params[:id])
+    unless @pack.user_id == current_user.id
+      redirect_to root_path
+    end
+
+  end
 
 end

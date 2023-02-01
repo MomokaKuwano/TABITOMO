@@ -1,6 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: %i[withdrawal edit update show]
-  before_action :ensure_login_user, only: %i[show]
+  before_action :ensure_normal_user, only: %i[withdrawal edit update]
 
   def show
     @user = User.find(params[:id])
@@ -41,16 +40,6 @@ class Public::UsersController < ApplicationController
       redirect_to root_path
     end
   end
-
-  # ログインしているユーザーが他のユーザーの登録情報をみれないようにする
-   # current_userのIDと URLのusers/:id 同じだったら,MYPAGEを表示してOK
-  # current_userのIDと URLのusers/:idが同じじゃなかったら,rootパスに戻す
-  def ensure_login_user
-    if current_user.id != params[:id].to_i
-      redirect_to root_path
-    end
-  end
-
 
   def user_params
     params.require(:user).permit(:name, :email, :profile_image, :country, :one_word, :is_deleted)

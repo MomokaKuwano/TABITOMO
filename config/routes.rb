@@ -26,9 +26,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
  # URLは変えない/ファイル構成だけ指定のパス
   scope module: :public do
     root to: 'homes#top'
-    resources :users, only: [:show, :edit, :update]
-    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
-    resources :users do
+    resources :users, only: [:show, :edit, :update] do
+      patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
       resource :relationships, only: [:create, :destroy]
     end
     resources :packs, only: [:create, :index, :show, :edit, :update, :destroy]
@@ -37,7 +36,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-
+    delete '/posts/:id/destroy_post' =>'posts#destroy_post', as: 'destroy_post'
 
   end
 end

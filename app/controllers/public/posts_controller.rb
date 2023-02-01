@@ -88,10 +88,9 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy_post
-    pack = Pack.find(params[:id])
-    pack.destroy
+    Post.find(params[:id]).destroy
     flash[:success] = "Successfully removed post!"
-    redirect_to user_path(@user)
+    redirect_to user_path(current_user.id)
   end
 
 
