@@ -30,11 +30,9 @@
           <!--アイテム追加-->
           <h4>Packing Item</h4>
           <%= f.fields_for :packing_lists do |item| %>
-            <div class="row">
-              <div class="col-xs-3 mb-3">
-                <div class="field">
-                  <%= render 'packing_list_fields', f: item %>
-                </div>
+            <div class="col-xs-3 mb-2">
+              <div class="field">
+                <%= render 'packing_list_fields', f: item %>
               </div>
             </div>
             <% end %>

@@ -96,7 +96,7 @@
                   <!--投稿画像-->
                   <%= image_tag post.routes.first.get_fill_image(200, 250), style:"width: 100%" %>
                   <div class="card-img-overlay p-0">
-                    <div class="bg-6">
+                    <div class="bg-7">
                       <h5 class="card-title">
                         <!--投稿タイトル-->
                         <%= link_to post.title, post_path(post) %>
@@ -139,7 +139,7 @@
                       <!--投稿画像-->
                       <%= image_tag post.routes.first.get_fill_image(200, 250), style:"width: 100%" %>
                       <div class="card-img-overlay p-0">
-                        <div class="bg-6">
+                        <div class="bg-7">
                           <h5 class="card-title">
                             <!--投稿タイトル-->
                             <%= link_to post.title, post_path(post) %>
@@ -172,29 +172,24 @@
       </div>
     </div>
     <div class="col-md-3 mt-3">
-      <%# if @user == current_user %>
-      <!--ログインしているユーザーのスケジュール-->
-      <!--<h4 class="mt-5">-->
-      <!--  Schedule-->
-      <!--</h4>-->
-      <%# end %>
-      <h4 class="mt-5">
-        Following
-      </h4>
-      <div>
-        <!--フォローしている人一覧-->
-        <% @users.each do |user| %>
-          <div class="mb-3 pr-0">
-          <%= link_to user_path(user) do %>
-            <%= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>
-            <%= user.name %>
+      <div class="bg-4 mt-5">
+        <h4>
+          Following
+        </h4>
+        <div>
+          <!--フォローしている人一覧-->
+          <% @users.each do |user| %>
+            <div class="mb-3 pr-0">
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>
+              <%= user.name %>
+            <% end %>
+            </div>
           <% end %>
-          </div>
-        <% end %>
+        </div>
+        <%= paginate @users, :param_name => 'user_page'%>
+
       </div>
-      <%= paginate @users, :param_name => 'user_page'%>
-
-
     </div>
   </div>
 </div>
