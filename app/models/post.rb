@@ -15,7 +15,7 @@ class Post < ApplicationRecord
   belongs_to :user
 
   # updateの時だけvalidationを実行させる
-  validates :title, presence: true, on: :update
+  validates :title, length: { maximum: 7 }, presence: true, on: :update
 
 
 end
