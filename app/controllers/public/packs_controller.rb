@@ -22,7 +22,6 @@ class Public::PacksController < ApplicationController
         @pack.packing_lists << PackingList.new(item_id: item.id)
       end
     end
-
     # フォームで作られたPackとPackingListを同時に保存する
     if @pack.save
       flash[:success] = "Saved Packing!"
@@ -48,11 +47,14 @@ class Public::PacksController < ApplicationController
     @update_items = []
     if params[:pack][:packing_lists_attributes] != nil
       params[:pack][:packing_lists_attributes].each do |k, v|
+        # deleteを押すと"false"が"1"になるので"false"分だけfind_or_createする
         if v[:_destroy] == "false"
           @update_items << Item.find_or_create_by(name: v[:item][:name], user_id: current_user.id)
         end
       end
+      # 一度packing_listsを全て消す
       @pack.packing_lists.destroy_all
+      # 新しくpacking_listsを作る
       @update_items.each do |item|
         @pack.packing_lists << PackingList.new(item_id: item.id)
       end

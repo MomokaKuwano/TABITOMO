@@ -17,11 +17,6 @@ devise_scope :user do
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
-#URLは指定のパス/ファイル構成も指定のパス
-  namespace :admin do
-    root to: 'homes#top'
-    resources :users, only: [:index, :show]
-  end
 
  # URLは変えない/ファイル構成だけ指定のパス
   scope module: :public do
@@ -37,8 +32,14 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       resources :comments, only: [:create, :destroy]
     end
     delete '/posts/:id/destroy_post' =>'posts#destroy_post', as: 'destroy_post'
-
   end
+
+  #URLは指定のパス/ファイル構成も指定のパス
+  namespace :admin do
+    root to: 'homes#top'
+    resources :users, only: [:index, :show, :edit, :update]
+  end
+
 end
 
 

@@ -23,25 +23,6 @@
                     <% end %>
                   </li>
                 </div>
-                <!--投稿一覧-->
-                <div class="mb-2">
-                  <li class="nav-item">
-                    <%= link_to admin_root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>
-                      <i class="fas fa-plane fa-fw"></i>
-                      Posts
-                    <% end %>
-                  </li>
-                </div>
-                <!--トピック-->
-                <!--<div class="mb-2">-->
-                <!--  <li class="nav-item">-->
-                <!--    <%#=link_to admin_root_path, class: 'btn btn-outline-info btn-block btn-lg' do %>-->
-                <!--      <i class="fas fa-pen-nib fa-fw"></i>-->
-                <!--      Topic-->
-                <!--    <%# end %>-->
-                <!--  </li>-->
-                <!--</div>-->
-                <!--ログアウト-->
                 <li class="nav-item">
                   <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-info btn-block btn-lg' do %>
                     <i class="fa-solid fa-right-from-bracket fa-fw"></i>

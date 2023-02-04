@@ -15,41 +15,50 @@
               <th scope="col">User ID</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
-              <th scope="col">status</th>
+              <th scope="col">Status</th>
+              <th scope="col">Chenge status</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">
-                <div class="offset-2">
+              <th>
+                <div class="pt-2 offset-2">
                 <%= @user.id %>
                 </div>
               </th>
-              <td>
+              <td class="pt-3">
                 <%= @user.name %>
               </td>
-              <td>
+              <td class="pt-3">
                 <%= @user.email %>
               </td>
-              <td>
-                <% if @user.is_deleted %>
+              <td class="pt-3">
+                <% if @user.is_deleted == false %>
+                  <strong>
+                    <p class="text-success">
+                      valid
+                    </p>
+                  </strong>
+                <% else %>
                   <strong>
                     <p class="text-black-50">
                       invalid
                     </p>
                   </strong>
+                <% end %>
+              </td>
+              <td class= "text-white">
+                <% if @user.is_deleted == false %>
+                  <%= link_to 'To invalid', admin_user_path(@user.id), method: :patch, class: "btn btn-danger" %>
                 <% else %>
-                  <strong>
-                    <p class="text-success">
-                       valid
-                    </p>
-                  </strong>
+                  <%= link_to 'To valid', admin_user_path(@user.id), method: :patch, class: "btn btn-success" %>
                 <% end %>
               </td>
             </tr>
           </tbody>
         </table>
   　   </div>
+
   　</div>
   </div>
 </div>
