@@ -25,7 +25,7 @@ class Public::PacksController < ApplicationController
     # フォームで作られたPackとPackingListを同時に保存する
     if @pack.save
       flash[:success] = "Saved Packing!"
-      redirect_to pack_path(Pack.last)
+      redirect_to pack_path(Pack.last.id)
     else
       @packs = current_user.packs.all
       render :index
