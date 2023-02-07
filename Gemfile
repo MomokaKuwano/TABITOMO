@@ -73,7 +73,6 @@ gem 'cocoon'
 
 gem 'jquery-rails'
 # デプロイ用
-gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
