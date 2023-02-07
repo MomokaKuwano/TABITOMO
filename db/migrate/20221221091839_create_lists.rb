@@ -1,6 +1,6 @@
-class CreatePacks < ActiveRecord::Migration[6.1]
+class CreateLists < ActiveRecord::Migration[6.1]
   def change
-    create_table :packs do |t|
+    create_table :lists do |t|
       t.integer :user_id, null: false
       t.string :pack_title, null: false
 

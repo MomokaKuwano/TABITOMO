@@ -25,7 +25,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
       resource :relationships, only: [:create, :destroy]
     end
-    resources :packs, only: [:create, :index, :show, :edit, :update, :destroy]
+    resources :lists, only: [:create, :index, :show, :edit, :update, :destroy]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       get 'edit_detail/:route_id' => 'posts#edit_detail', as: 'edit_detail'
       resource :likes, only: [:create, :destroy]

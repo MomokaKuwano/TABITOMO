@@ -1,20 +1,20 @@
-class Public::PacksController < ApplicationController
+class Public::ListsController < ApplicationController
   before_action :ensure_login_user, only: %i[show]
 
   def index
-    @packs = current_user.packs.all
-    @pack = Pack.new
+    @packs = current_user.lists.all
+    @pack = List.new
   end
 
   def create
     # Transaction 開始
-    @pack = Pack.new(pack_params)
+    @pack = List.new(pack_params)
     @pack.user_id = current_user.id
     # 空のitem作成
     @items = []
     # hashのeach文でitemのnameを保存する
-    if params[:pack][:packing_lists_attributes] != nil
-      params[:pack][:packing_lists_attributes].each do |k, v|
+    if params[:list][:packing_lists_attributes] != nil
+      params[:list][:packing_lists_attributes].each do |k, v|
         @items << Item.find_or_create_by(name: v[:item][:name], user_id: current_user.id)
       end
       # @pack.packing_listsに新しいitem_idを持ったPackingListを生成する
@@ -25,7 +25,7 @@ class Public::PacksController < ApplicationController
     # フォームで作られたPackとPackingListを同時に保存する
     if @pack.save
       flash[:success] = "Saved Packing!"
-      redirect_to pack_path(Pack.last.id)
+      redirect_to list_path(List.last.id)
     else
       @packs = current_user.packs.all
       render :index
@@ -33,20 +33,20 @@ class Public::PacksController < ApplicationController
   end
 
   def show
-    @pack = Pack.find(params[:id])
+    @pack = List.find(params[:id])
     # item_ids = @pack.packing_lists.pluck(:item_id)
     @items = @pack.items
   end
 
   def edit
-    @pack = Pack.find(params[:id])
+    @pack = List.find(params[:id])
   end
 
   def update
-    @pack = Pack.find(params[:id])
+    @pack = List.find(params[:id])
     @update_items = []
-    if params[:pack][:packing_lists_attributes] != nil
-      params[:pack][:packing_lists_attributes].each do |k, v|
+    if params[:list][:packing_lists_attributes] != nil
+      params[:list][:packing_lists_attributes].each do |k, v|
         # deleteを押すと"false"が"1"になるので"false"分だけfind_or_createする
         if v[:_destroy] == "false"
           @update_items << Item.find_or_create_by(name: v[:item][:name], user_id: current_user.id)
@@ -60,28 +60,28 @@ class Public::PacksController < ApplicationController
       end
     end
     if @pack.update(pack_params)
-      redirect_to pack_path(@pack.id)
+      redirect_to list_path(@pack.id)
     else
       render :edit
     end
   end
 
   def destroy
-    pack = Pack.find(params[:id])
+    pack = List.find(params[:id])
     pack.destroy
     flash[:success] = "Successfully removed packing!"
-    redirect_to packs_path
+    redirect_to lists_path
   end
 
   private
 
   def pack_params
-    params.require(:pack).permit(:pack_title)
+    params.require(:list).permit(:pack_title)
   end
 
   # ログインしているユーザーが他のユーザーの登録情報をみれないようにする
   def ensure_login_user
-     @pack = Pack.find(params[:id])
+     @pack = List.find(params[:id])
     unless @pack.user_id == current_user.id
       redirect_to root_path
     end

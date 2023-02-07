@@ -51,7 +51,7 @@
         Memory
       </h4>
       <% @packs.each do |pack| %>
-        <%= link_to pack_path(pack) do %>
+        <%= link_to list_path(pack) do %>
         <div class="card bg-light mb-3" style="max-width: 18rem;">
           <div class="card-body">
             <h5 class="card-title"><%= pack.pack_title %></h5>

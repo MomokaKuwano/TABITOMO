@@ -60,11 +60,6 @@ ActiveRecord::Schema.define(version: 2023_01_06_132434) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "follows", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.string "user_id", null: false
@@ -79,16 +74,16 @@ ActiveRecord::Schema.define(version: 2023_01_06_132434) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "packing_lists", force: :cascade do |t|
-    t.integer "pack_id", null: false
-    t.integer "item_id", null: false
+  create_table "lists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "pack_title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "packs", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "pack_title", null: false
+  create_table "packing_lists", force: :cascade do |t|
+    t.integer "list_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
