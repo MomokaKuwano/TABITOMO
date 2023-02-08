@@ -12,7 +12,7 @@
               <div class="col-md-6 mb-2">
                 <!--プロフィール写真※必須ではない-->
                 <%= f.label :profile_image, "ProfileImage", class: "col-form-label" %>
-                <%= f.file_field :profile_image, accept: "form-control" %>
+                <%= f.file_field :profile_image, accept: ".jpg, .jpeg, .png" %>
               </div>
             </div>
             <div class="row">

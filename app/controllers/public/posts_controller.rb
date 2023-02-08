@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
   def new
     # 条件を指定して初めの1件を取得し1件もなければ作成
     @post = Post.find_or_create_by(user_id: current_user.id, status: false)

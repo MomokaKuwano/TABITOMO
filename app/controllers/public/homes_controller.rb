@@ -1,4 +1,5 @@
 class Public::HomesController < ApplicationController
+  
   def top
     @user = current_user
     @posts = Post.published.page(params[:post_page])

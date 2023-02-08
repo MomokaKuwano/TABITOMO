@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :ensure_normal_user, only: %i[withdrawal edit update]
 
   def show
@@ -38,6 +39,7 @@ class Public::UsersController < ApplicationController
   def ensure_normal_user
     if current_user.email === 'guest@example.com'
       redirect_to root_path
+
     end
   end
 
