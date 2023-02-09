@@ -81,7 +81,7 @@
             </div>
           <% end %>
           <!--タイトルフォーム-->
-            <%= form_with model: @post, url: post_path(@post), local: true, multipart: true do |f| %>
+          <%= form_with model: @post, url: post_path(@post), local: true, multipart: true do |f| %>
             <div class="d-inline-flex">
               <i class="fa-solid fa-bookmark fa-lg mt-2 mr-2"></i>
               <%= f.text_field :title, class: "form-control", placeholder: "Plan title" %>
