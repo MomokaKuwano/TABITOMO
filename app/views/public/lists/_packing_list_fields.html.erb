@@ -1,5 +1,4 @@
 <div class="nested-fields field">
-
   <div class="d-flex align-items-center mb-2">
     <!--<label class="control-label">item</label>-->
     <div class="row m-2">
@@ -7,11 +6,10 @@
         <%= f.fields_for :item do |ff| %>
           <% if f.object.item.nil? %>
             <%= ff.text_field :name, class: 'form-control', placeholder: "Item" %>
-            <% else %>
+          <% else %>
             <%= ff.text_field :name, value: f.object.item.name, class: 'form-control', placeholder: "Item" %>
           <% end %>
         <% end %>
-
       </div>
       <div class="ml-3 mt-1 text-white">
       <%= link_to_remove_association 'delete', f, class: 'btn btn-danger rounded-pill btn-sm' %>

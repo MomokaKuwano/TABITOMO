@@ -15,13 +15,11 @@
         </div>
         <div class="bg-2 p-3">
           <h4>Trip Plan</h4>
-
           <!--スポット検索-->
           <%= form_with url: root_path, method: :get, local: true, class: "d-inline-flex" do |f| %>
             <%= f.text_field :keyword, class: "form-control mr-2", type: "search", placeholder: "Spot" %>
             <%= f.submit :search, class: "btn btn-info rounded-pill btn-sm" %>
           <% end %>
-
           <div class="row row-cols-md-3 mt-2">
             <% @posts.each do |post| %>
               <div class="col">
@@ -60,7 +58,7 @@
           </div>
         </div>
       </div>
-      </div>
+    </div>
     <div class="col-md-3 mt-3 px-0">
       <div class="bg-4 mt-5">
         <h4 class="mt-3">
@@ -80,8 +78,8 @@
             <!--退会したユーザーは表示しない-->
             <% if user.is_deleted == false %>
               <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>
-              <%= user.name %>
+                <%= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>
+                <%= user.name %>
               <% end %>
             <% end %>
           </div>
