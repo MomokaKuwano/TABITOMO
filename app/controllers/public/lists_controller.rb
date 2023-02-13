@@ -27,7 +27,7 @@ class Public::ListsController < ApplicationController
       flash[:success] = "Saved Packing!"
       redirect_to list_path(List.last.id)
     else
-      @packs = current_user.packs.all
+      @packs = current_user.lists.all
       render :index
     end
   end
