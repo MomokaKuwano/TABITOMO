@@ -32,10 +32,10 @@
 en:
   activerecord:
     models:
-      pack: "pack"
+      list: "pack"
       packing_lists: "item"
     attributes:
-      pack:
+      list:
         pack_title: "title"
         packing_lists: "item"
       packing_lists:

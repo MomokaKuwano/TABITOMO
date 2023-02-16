@@ -1,5 +1,5 @@
 class Public::ListsController < ApplicationController
-  before_action :ensure_login_user, only: %i[show]
+  before_action :ensure_login_user, only: %i[index show]
 
   def index
     @packs = current_user.lists.all
