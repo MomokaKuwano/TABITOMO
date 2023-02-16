@@ -123,28 +123,28 @@
                 </p>
             </div>
               <div class="card mb-3" style="max-width: 540px;">
-                  <div class="row g-0">
-                    <div class="col-md-4">
-                      <!--投稿画像-->
-                      <%= image_tag route.get_image, size: "150x100" %>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
-                        <h5 class="card-title">
-                          <i class="fa-solid fa-location-dot"></i>
-                          <!--投稿スポット-->
-                          <%= route.spot %>
-                          </h5>
-                        <p class="card-text">
-                          <!--投稿キャプション-->
-                          <%= route.caption %>
-                        </p>
-                      </div>
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <!--投稿画像-->
+                    <%= image_tag route.get_image, size: "150x100" %>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <!--投稿スポット-->
+                        <%= route.spot %>
+                        </h5>
+                      <p class="card-text">
+                        <!--投稿キャプション-->
+                        <%= route.caption %>
+                      </p>
                     </div>
                   </div>
                 </div>
-              <% end %>
               </div>
+              <% end %>
+            </div>
             <% end %>
           </div>
         </div>
