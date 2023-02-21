@@ -25,8 +25,6 @@
 - 旅先で → 未開の地を開拓したい、その地域のオススメだけ巡ってみたい、行きたいところが見つからない時
 - 旅行後 → 旅程を振り返りたい、同じ観光地が好きな人同士で友達を作りたい時
 
-## 設計書
-
 
 ## 実装機能リストのURL
 - https://docs.google.com/spreadsheets/d/1Xz39-sd1vq86uErY2c6O9X8YXrRvf3Ndm9uvFXkau58/edit?usp=sharing
@@ -38,5 +36,3 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
-- 使用検討中です
