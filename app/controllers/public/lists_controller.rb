@@ -7,7 +7,6 @@ class Public::ListsController < ApplicationController
   end
 
   def create
-    # Transaction 開始
     @pack = List.new(pack_params)
     @pack.user_id = current_user.id
     # 空のitem作成
@@ -34,7 +33,6 @@ class Public::ListsController < ApplicationController
 
   def show
     @pack = List.find(params[:id])
-    # item_ids = @pack.packing_lists.pluck(:item_id)
     @items = @pack.items
   end
 
