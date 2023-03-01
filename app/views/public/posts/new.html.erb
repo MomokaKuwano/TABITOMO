@@ -72,13 +72,13 @@
           <% if @post.routes.count > 0 %>
           <!--エラーメッセージ-->
           <% if @post.errors.any? %>
-            <div class="alert alert-warning mt-3">
-              <ul style="list-style: none;">
-                <% @post.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
+          <div class="alert alert-warning mt-3">
+            <ul style="list-style: none;">
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
           <% end %>
           <!--タイトルフォーム-->
           <%= form_with model: @post, url: post_path(@post), local: true, multipart: true do |f| %>
