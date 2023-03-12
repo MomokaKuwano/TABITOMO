@@ -35,7 +35,6 @@ class Public::UsersController < ApplicationController
 
   private
 
-
   def ensure_normal_user
     if current_user.email === 'guest@example.com'
       redirect_to root_path
